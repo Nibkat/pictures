@@ -9,11 +9,11 @@
 </head>
 
 <body>
-  <img src="images/placeholder.png" id="picture" alt="picture" draggable="false">
+  <img class="noselect" src="images/placeholder.png" id="picture" alt="picture" draggable="false">
 
-  <div class="noselect button-container" id="something">
-    <i id="select-image" class="icon-button material-icons">insert_drive_file</i><i class="icon-button material-icons" id="minimizeButton" style="position: relative; top: 0.25em;">remove</i><i class="icon-button material-icons" id="closeButton">close</i>
-    <!--<div style="width: 16px; height: 16px; background-color: #EA5B53; border-radius: 50%; display: inline-block; margin: 4px"></div>-->
+  <div class="noselect button-container" id="titlebar">
+    <!--<i id="select-image" class="icon-button material-icons">insert_drive_file</i><i class="icon-button material-icons" id="minimizeButton" style="position: relative; top: 0.25em;">remove</i><i class="icon-button material-icons" id="closeButton">close</i>-->
+    <div class="titlebar-button" id="minimizeButton" style="background-color: #F8BD34;"></div><div class="titlebar-button" id="closeButton" style="background-color: #EA5B53;"></div>
   </div>
 
   <script>
