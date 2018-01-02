@@ -46,11 +46,10 @@ function registerShortcuts() {
 function openImageDialog() {
   dialog.showOpenDialog({
     filters: [
-
       {
+        name: 'image',
         extensions: ['jpg', 'png', 'gif', 'svg', 'bmp']
       }
-
     ]
   }, function (files) {
     if (files) {

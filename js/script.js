@@ -17,7 +17,7 @@ $('#closeButton').click(function () {
     remote.getCurrentWindow().close();
 });
 
-$('#select-directory').click(function (event) {
+$('#select-image').click(function (event) {
     ipc.send('open-file-dialog');
 });
 
