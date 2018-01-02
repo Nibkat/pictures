@@ -1,0 +1,19 @@
+{
+  "name": "pictures",
+  "version": "0.0.1",
+  "description": "A minimal picture viewing application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/LtKst/pictures",
+  "keywords": [
+    "Electron",
+    "Pictures"
+  ],
+  "author": "Koen Sparreboom",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.7.8"
+  }
+}

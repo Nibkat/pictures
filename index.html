@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Pictures</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <img src="placeholder.png" id="picture" alt="picture" draggable="false">
+
+  <div class="noselect button-container">
+    <i id="select-directory" class="icon-button material-icons">insert_drive_file</i><i class="icon-button material-icons" id="minimizeButton" style="position: relative; top: 0.25em;">remove</i><i class="icon-button material-icons" id="closeButton">close</i>
+  </div>
+
+  <script>
+    const remote = require('electron').remote;
+
+    var picture = document.getElementById("picture");
+
+    remote.getCurrentWindow().setSize(picture.width, picture.height);
+    remote.getCurrentWindow().setPosition(Math.round(screen.width / 2 - picture.width / 2), Math.round(screen.height / 2 - picture.height / 2));
+
+    document.getElementById('minimizeButton').addEventListener('click', function () {
+      remote.getCurrentWindow().minimize();
+    });
+
+    document.getElementById('closeButton').addEventListener('click', function () {
+      remote.getCurrentWindow().close();
+    });
+
+    const ipc = require('electron').ipcRenderer;
+
+    const selectDirBtn = document.getElementById('select-directory');
+
+    selectDirBtn.addEventListener('click', function (event) {
+      ipc.send('open-file-dialog');
+    });
+
+    ipc.on('selected-directory', function (event, path) {
+      picture.src = `${path}`;
+      remote.getCurrentWindow().setSize(picture.width, picture.height);
+      remote.getCurrentWindow().setPosition(Math.round(screen.width / 2 - picture.width / 2), Math.round(screen.height / 2 - picture.height / 2));
+    });
+  </script>
+
+  <script>
+    require('./renderer.js');
+  </script>
+</body>
+
+</html>
