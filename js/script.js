@@ -21,7 +21,7 @@ $('#select-directory').click(function (event) {
     ipc.send('open-file-dialog');
 });
 
-ipc.on('selected-directory', function (event, path) {
+ipc.on('selected-image', function (event, path) {
     picture.src = `${path}`;
 });
 

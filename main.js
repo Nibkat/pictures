@@ -33,12 +33,30 @@ function createWindow() {
   });
 }
 
-app.on('ready', function () {
-  createWindow();
+function registerShortcuts() {
+  globalShortcut.register('CommandOrControl+O', function (event) {
+    dialog.showOpenDialog({
+      properties: ['openFile']
+    }, function (files) {
+      if (files) {
+        mainWindow.send('selected-image', files);
+      }
+    });
+  });
 
   globalShortcut.register('CommandOrControl+Q', function () {
     app.quit();
   });
+}
+
+function openImage() {
+
+}
+
+app.on('ready', function () {
+  createWindow();
+
+  registerShortcuts();
 });
 
 app.on('window-all-closed', function () {
@@ -55,9 +73,17 @@ app.on('activate', function () {
 
 ipc.on('open-file-dialog', function (event) {
   dialog.showOpenDialog({
-    properties: ['openFile']
+    filters: [
+
+      {
+        extensions: ['jpg', 'png', 'gif', 'svg', 'bmp']
+      }
+
+    ]
   }, function (files) {
-    if (files)
-      event.sender.send('selected-directory', files);
+    if (files) {
+      console.log(event.sender);
+      event.sender.send('selected-image', files[0]);
+    }
   });
 });
