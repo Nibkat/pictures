@@ -1,9 +1,3 @@
-const remote = require('electron').remote;
-const ipc = require('electron').ipcRenderer;
-
-const electronScreen = require('electron').screen;
-const screenSize = electronScreen.getPrimaryDisplay().size;
-
 var picture = document.getElementById('picture');
 
 centerWindow();
@@ -30,6 +24,10 @@ $('#picture').on('load', function () {
     centerWindow();
 });
 
+$('#picture').dblclick(function() {
+    ipc.send('open-file-dialog');
+});
+
 function centerWindow() {
     remote.getCurrentWindow().setPosition(Math.round(screenSize.width / 2 - picture.width / 2), Math.round(screenSize.height / 2 - picture.height / 2));
 }
@@ -46,27 +44,3 @@ function setWindowSize() {
 
     remote.getCurrentWindow().setSize(picture.width, picture.height);
 }
-
-var holder = document;
-
-holder.ondragover = () => {
-    return false;
-};
-
-holder.ondragleave = () => {
-    return false;
-};
-
-holder.ondragend = () => {
-    return false;
-};
-
-holder.ondrop = (e) => {
-    e.preventDefault();
-
-    if (e.dataTransfer.files[0].type.includes('image')) {
-        picture.src = e.dataTransfer.files[0].path;
-    }
-
-    return false;
-};
