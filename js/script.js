@@ -26,16 +26,25 @@ ipc.on('selected-image', function (event, path) {
 });
 
 $('#picture').on('load', function () {
-    centerWindow();
     setWindowSize();
+    centerWindow();
 });
 
 function centerWindow() {
-    remote.getCurrentWindow().setSize(picture.width, picture.height);
+    remote.getCurrentWindow().setPosition(Math.round(screenSize.width / 2 - picture.width / 2), Math.round(screenSize.height / 2 - picture.height / 2));
 }
 
 function setWindowSize() {
-    remote.getCurrentWindow().setPosition(Math.round(screenSize.width / 2 - picture.width / 2), Math.round(screenSize.height / 2 - picture.height / 2));
+    picture.removeAttribute("width");
+    picture.removeAttribute("height");
+
+    if (picture.height > screenSize.height) {
+        picture.height = screenSize.height - 128;
+    } else if (picture.width > screenSize.width) {
+        picture.width = screenSize.width - 512;
+    }
+
+    remote.getCurrentWindow().setSize(picture.width, picture.height);
 }
 
 var holder = document;
