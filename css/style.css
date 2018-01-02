@@ -40,18 +40,11 @@ body {
     cursor: pointer;
     transition: color 0.25s ease;
     -webkit-app-region: no-drag;
+    margin: 4px;
 }
 
 #select-image:hover:active {
     color: #63CD40;
-}
-
-#minimizeButton:hover:active {
-    color: #F8BD34;
-}
-
-#closeButton:hover:active {
-    color: #EA5B53;
 }
 
 .titlebar-button {
