@@ -6,7 +6,6 @@ const url = require('url');
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const globalShortcut = electron.globalShortcut;
 
 let mainWindow;
 
@@ -30,16 +29,6 @@ function createWindow() {
   });
 }
 
-function registerShortcuts() {
-  globalShortcut.register('CommandOrControl+O', function (event) {
-    openImageDialog();
-  });
-
-  globalShortcut.register('CommandOrControl+Q', function () {
-    app.quit();
-  });
-}
-
 function openImageDialog() {
   dialog.showOpenDialog({
     filters: [
@@ -57,8 +46,6 @@ function openImageDialog() {
 
 app.on('ready', function () {
   createWindow();
-
-  registerShortcuts();
 });
 
 app.on('window-all-closed', function () {
