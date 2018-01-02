@@ -45,7 +45,7 @@ function openImageDialog() {
     filters: [
       {
         name: 'Image',
-        extensions: ['jpg', 'png', 'gif', 'svg', 'bmp', 'webp', 'tiff', 'ico']
+        extensions: ['jpeg', 'jpg', 'png', 'gif', 'svg', 'bmp', 'webp', 'tiff', 'ico']
       }
     ]
   }, function (files) {

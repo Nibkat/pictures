@@ -38,9 +38,9 @@ function setWindowSize() {
     picture.removeAttribute("width");
     picture.removeAttribute("height");
 
-    if (picture.height > screenSize.height) {
+    if (picture.height >= screenSize.height) {
         picture.height = screenSize.height - 128;
-    } else if (picture.width > screenSize.width) {
+    } else if (picture.width >= screenSize.width) {
         picture.width = screenSize.width - 512;
     }
 
@@ -64,9 +64,8 @@ holder.ondragend = () => {
 holder.ondrop = (e) => {
     e.preventDefault();
 
-    for (let f of e.dataTransfer.files) {
-        console.log('File(s) you dragged here: ', f.path)
-        picture.src = f.path;
+    if (e.dataTransfer.files[0].type.includes('image')) {
+        picture.src = e.dataTransfer.files[0].path;
     }
 
     return false;
