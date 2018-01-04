@@ -16,7 +16,7 @@ holder.ondrop = (e) => {
     e.preventDefault();
 
     if (e.dataTransfer.files[0].type.includes('image')) {
-        picture.src = e.dataTransfer.files[0].path;
+        $(picture).attr('src', e.dataTransfer.files[0].path);
     }
 
     return false;

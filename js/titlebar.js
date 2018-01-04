@@ -1,30 +1,28 @@
+var titlebar = $('#titlebar');
+
+// Buttons
+var minimizeButton = $('#minimizeButton');
+var closeButton = $('#closeButton');
+
 var autoHideTitlebarInterval;
 
 $('*').mousemove(function (e) {
     clearInterval(autoHideTitlebarInterval);
 
-    if (e.clientY <= $('#titlebar')[0].getBoundingClientRect().bottom) {
-        $('#titlebar').css('opacity', '1');
+    if (e.clientY <= titlebar[0].getBoundingClientRect().bottom) {
+        titlebar.css('opacity', '1');
         autoHideTitlebarInterval = setInterval(function () {
-            $('#titlebar').css('opacity', '0');
+            titlebar.css('opacity', '0');
         }, 10000);
     } else {
-        $('#titlebar').css('opacity', '0');
+        titlebar.css('opacity', '0');
     }
 });
 
-/*$('#minimizeButton').mouseenter(function() {
-    $('#minimizeButton').html('-');
+minimizeButton.click(function () {
+    remote.getCurrentWindow().minimize();
 });
 
-$('#minimizeButton').mouseout(function() {
-    $('#minimizeButton').html('');
+closeButton.click(function () {
+    remote.getCurrentWindow().close();
 });
-
-$('#closeButton').mouseenter(function() {
-    $('#closeButton').html('x');
-});
-
-$('#closeButton').mouseout(function() {
-    $('#closeButton').html('');
-});*/
