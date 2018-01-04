@@ -1,23 +1,11 @@
-$(document).keydown(function (e) {
-    // Open image
-    if (e.ctrlKey && e.keyCode == 79) {
-        ipc.send('open-file-dialog');
-    }
-
-    // Copy image
-    if (e.ctrlKey && e.keyCode == 67) {
-        copyImage();
-    }
-
-    // Quit
-    if (e.ctrlKey && e.keyCode == 81) {
-        remote.getCurrentWindow().close();
-    }
+Mousetrap.bind('ctrl+o', function(e) {
+    ipc.send('open-file-dialog');
 });
 
-function copyImage() {
-    console.log('hey');
+/*Mousetrap.bind('ctrl+c', function(e) {
+    copyImage();
+});*/
 
-    let image = nativeImage.createFromPath(picture.src);
-    clipboard.writeBuffer('png', image.toPNG());
-}
+Mousetrap.bind('ctrl+q', function(e) {
+    remote.getCurrentWindow().close();
+});

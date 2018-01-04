@@ -1,4 +1,5 @@
 var picture = document.getElementById('picture');
+$('#urlTextBox').hide();
 
 centerWindow();
 setWindowSize();
@@ -15,6 +16,10 @@ $('#select-image').click(function (event) {
     ipc.send('open-file-dialog');
 });
 
+$('#open-url').click(function () {
+    $('#urlTextBox').fadeToggle('fast');
+});
+
 ipc.on('selected-image', function (event, path) {
     picture.src = `${path}`;
 });
@@ -24,8 +29,20 @@ $('#picture').on('load', function () {
     centerWindow();
 });
 
-$('#picture').dblclick(function() {
+$('#picture').dblclick(function () {
     ipc.send('open-file-dialog');
+});
+
+$('#urlTextBox').keypress(function (e) {
+    if (e.keyCode == 13) {
+        if (checkURL($('#urlTextBox').val())) {
+            picture.src = $('#urlTextBox').val();
+            $('#urlTextBox').val('');
+            $('#urlTextBox').fadeOut('fast');
+        }
+        else
+            alert('Url is not an image');
+    }
 });
 
 function centerWindow() {
@@ -45,4 +62,8 @@ function setWindowSize() {
     }
 
     remote.getCurrentWindow().setSize(picture.width, picture.height);
+}
+
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
 }

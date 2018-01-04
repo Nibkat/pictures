@@ -40,11 +40,14 @@ body {
     cursor: pointer;
     transition: color 0.25s ease;
     -webkit-app-region: no-drag;
-    margin: 4px;
 }
 
 #select-image:hover:active {
     color: #F9D774;
+}
+
+#open-url:hover:active {
+    color: rgb(143, 143, 143);
 }
 
 .titlebar-button {
@@ -56,3 +59,7 @@ body {
     cursor: pointer;
     -webkit-app-region: no-drag;
 }
+
+::placeholder { /* Most modern browsers support this now. */
+    color: #cccccc;
+ }
