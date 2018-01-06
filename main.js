@@ -117,13 +117,16 @@ ipcMain.on('show-context-menu', function (event) {
 const editMenu = new Menu();
 
 editMenu.append(new MenuItem({
-  role: 'cut'
+  role: 'cut',
+  accelerator: 'CommandOrControl+X'
 }));
 editMenu.append(new MenuItem({
-  role: 'copy'
+  role: 'copy',
+  accelerator: 'CommandOrControl+C'
 }));
 editMenu.append(new MenuItem({
-  role: 'paste'
+  role: 'paste',
+  accelerator: 'CommandOrControl+V'
 }));
 
 ipcMain.on('show-edit-context-menu', function (event) {
