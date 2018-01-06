@@ -4,4 +4,4 @@ $(picture).contextmenu(function () {
 
 $('#urlTextbox').contextmenu(function () {
     ipcRenderer.send('show-edit-context-menu');
-})
+});
