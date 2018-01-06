@@ -41,15 +41,21 @@
 
   <script>
     const electron = require('electron');
+    const fs = require('fs');
+    const path = require('path');
 
     const remote = electron.remote;
-    const currentWindow = remote.getCurrentWindow();
+    
     const ipcRenderer = electron.ipcRenderer;
+    const dialog = remote.dialog;
+    const shell = electron.shell;
+    const currentWindow = remote.getCurrentWindow();
 
     const electronScreen = electron.screen;
     const screenSize = electronScreen.getPrimaryDisplay().size;
   </script>
 
+  <script src="./js/contextMenu.js"></script>
   <script src="./js/dropzone.js"></script>
   <script src="./js/titlebar.js"></script>
   <script src="./js/window.js"></script>

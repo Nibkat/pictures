@@ -1,5 +1,9 @@
+Mousetrap.bind(['mod+s'], function (e) {
+    console.log('save');
+});
+
 Mousetrap.bind(['mod+o'], function (e) {
-    ipcRenderer.send('open-file-dialog');
+    showOpenImageDialog();
 });
 
 /*Mousetrap.bind('ctrl+c', function(e) {

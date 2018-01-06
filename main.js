@@ -1,6 +1,13 @@
 const electron = require('electron');
 
-const {app, BrowserWindow, ipcMain, dialog} = electron;
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  dialog,
+  Menu,
+  MenuItem
+} = electron;
 
 const path = require('path');
 const url = require('url');
@@ -27,21 +34,6 @@ function createWindow() {
   });
 }
 
-function openImageDialog() {
-  dialog.showOpenDialog({
-    filters: [
-      {
-        name: 'Image',
-        extensions: ['jpeg', 'jpg', 'png', 'gif', 'svg', 'bmp', 'webp', 'tiff', 'ico']
-      }
-    ]
-  }, function (files) {
-    if (files) {
-      mainWindow.send('selected-image', files[0]);
-    }
-  });
-}
-
 app.on('ready', function () {
   createWindow();
 });
@@ -58,18 +50,63 @@ app.on('activate', function () {
   }
 });
 
-ipcMain.on('open-file-dialog', function (event) {
-  openImageDialog();
+// Context menu
+const menu = new Menu();
+
+// Context menu items
+const saveImage = new MenuItem({
+  label: 'Save as',
+  accelerator: 'CommandOrControl+S'
+});
+saveImage.click = function () {
+  mainWindow.send('save-image');
+}
+
+const openMenuItem = new MenuItem({
+  label: 'Open',
+  accelerator: 'CommandOrControl+O'
+});
+openMenuItem.click = function () {
+  mainWindow.send('open-image');
+}
+
+const openFolderItem = new MenuItem({
+  label: 'Open folder'
+});
+openFolderItem.click = function () {
+  mainWindow.send('open-folder');
+}
+
+const deleteImageItem = new MenuItem({
+  label: 'Delete'
+});
+deleteImageItem.click = function () {
+  mainWindow.send('delete-image');
+}
+
+const quitMenuItem = new MenuItem({
+  role: 'quit',
+  accelerator: 'CommandOrControl+Q'
 });
 
-ipcMain.on('delete-confirmation', function (event) {
-  const options = {
-    type: 'info',
-    title: 'Delete image',
-    message: "Are you sure you want to delete this image?",
-    buttons: ['Yes', 'No']
-  }
-  dialog.showMessageBox(options, function (index) {
-    event.sender.send('delete-confirmation-recieved', index)
-  })
-})
+// Append menu items
+menu.append(saveImage);
+menu.append(new MenuItem({
+  type: 'separator'
+}));
+menu.append(openMenuItem);
+menu.append(openFolderItem);
+menu.append(new MenuItem({
+  type: 'separator'
+}));
+menu.append(deleteImageItem);
+menu.append(new MenuItem({
+  type: 'separator'
+}));
+menu.append(quitMenuItem);
+
+// Context menu ipc
+ipcMain.on('show-context-menu', function (event) {
+  const win = BrowserWindow.fromWebContents(event.sender);
+  menu.popup(win);
+});
