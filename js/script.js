@@ -79,7 +79,7 @@ function deleteImage() {
                         return;
                     }
 
-                    picture.attr('src', 'images/placeholder.png');
+                    picture.attr('src', 'images/deleted.png');
                 });
             } else {
                 alert("This file doesn't exist or isn't local, cannot delete");
