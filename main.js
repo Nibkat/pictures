@@ -78,7 +78,8 @@ openFolderItem.click = function () {
 }
 
 const deleteImageItem = new MenuItem({
-  label: 'Delete'
+  label: 'Delete',
+  accelerator: 'CommandOrControl+D'
 });
 deleteImageItem.click = function () {
   mainWindow.send('delete-image');
