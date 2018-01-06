@@ -71,7 +71,8 @@ openMenuItem.click = function () {
 }
 
 const openFolderItem = new MenuItem({
-  label: 'Open folder'
+  label: 'Open folder',
+  accelerator: 'CommandOrControl+Shift+O'
 });
 openFolderItem.click = function () {
   mainWindow.send('open-folder');
