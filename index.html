@@ -21,9 +21,9 @@
 
   <div id="titlebar" class="no-select">
     <div style="float: left; padding: 4px">
-      <i id="select-image" class="icon-button material-icons">folder</i>
-      <i id="open-url" class="icon-button material-icons">attach_file</i>
-      <i id="delete" class="icon-button material-icons">delete</i>
+      <i id="openImageButton" class="icon-button material-icons">folder</i>
+      <i id="openUrlButton" class="icon-button material-icons">attach_file</i>
+      <i id="deleteButton" class="icon-button material-icons">delete</i>
     </div>
 
     <div style="float: right; margin-right: 8px;">
@@ -50,12 +50,12 @@
     const screenSize = electronScreen.getPrimaryDisplay().size;
   </script>
 
-  <script>
-    require('./js/dropzone.js');
-    require('./js/titlebar.js');
-    require('./js/shortcuts.js');
-    require('./js/script.js');
-  </script>
+  <script src="./js/dropzone.js"></script>
+  <script src="./js/titlebar.js"></script>
+  <script src="./js/window.js"></script>
+  <script src="./js/shortcuts.js"></script>
+  <script src="./js/utility.js"></script>
+  <script src="./js/script.js"></script>
 
   <script>
     if (window.module) module = window.module;

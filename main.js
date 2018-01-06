@@ -1,10 +1,9 @@
 const electron = require('electron');
-const ipcMain = require('electron').ipcMain;
-const dialog = require('electron').dialog;
+
+const {app, BrowserWindow, ipcMain, dialog} = electron;
+
 const path = require('path');
 const url = require('url');
-
-const {app, BrowserWindow} = electron;
 
 let mainWindow;
 
@@ -62,3 +61,15 @@ app.on('activate', function () {
 ipcMain.on('open-file-dialog', function (event) {
   openImageDialog();
 });
+
+ipcMain.on('delete-confirmation', function (event) {
+  const options = {
+    type: 'info',
+    title: 'Delete image',
+    message: "Are you sure you want to delete this image?",
+    buttons: ['Yes', 'No']
+  }
+  dialog.showMessageBox(options, function (index) {
+    event.sender.send('delete-confirmation-recieved', index)
+  })
+})

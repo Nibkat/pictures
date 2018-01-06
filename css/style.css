@@ -58,14 +58,14 @@ body {
     -webkit-app-region: no-drag;
 }
 
-#select-image:hover:active {
+#selectImageButton:hover:active {
     color: #F9D774;
 }
 
-#open-url:hover:active {
+#openUrlButton:hover:active {
     color: #a7a7a7;
 }
 
-#delete:hover:active {
+#deleteButton:hover:active {
     color: #ea5b53;
 }
