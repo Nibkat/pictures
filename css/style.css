@@ -58,7 +58,7 @@ body {
     -webkit-app-region: no-drag;
 }
 
-#selectImageButton:hover:active {
+#openImageButton:hover:active {
     color: #F9D774;
 }
 
