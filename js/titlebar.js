@@ -20,9 +20,9 @@ $('*').mousemove(function (e) {
 });
 
 minimizeButton.click(function () {
-    remote.getCurrentWindow().minimize();
+    currentWindow.minimize();
 });
 
 closeButton.click(function () {
-    remote.getCurrentWindow().close();
+    currentWindow.close();
 });
