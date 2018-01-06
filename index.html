@@ -17,19 +17,19 @@
 </head>
 
 <body>
-  <img class="noselect" src="images/placeholder.png" id="picture" alt="picture">
+  <img id="picture" class="no-select" src="images/placeholder.png" alt="picture">
 
-  <div class="noselect button-container" id="titlebar">
+  <div id="titlebar" class="no-select">
     <div style="float: left; padding: 4px">
       <i id="select-image" class="icon-button material-icons">folder</i>
       <i id="open-url" class="icon-button material-icons">attach_file</i>
-      <i id="share-button" class="icon-button material-icons">share</i>
+      <i id="delete" class="icon-button material-icons">delete</i>
     </div>
 
     <div style="float: right; margin-right: 8px;">
-      <div class="titlebar-button" id="minimizeButton" style="background-color: #F8BD34;"></div>
-      <div class="titlebar-button" id="maximizeButton" style="background-color: #D0D0D0;"></div>
-      <div class="titlebar-button" id="closeButton" style="background-color: #EA5B53;"></div>
+      <div id="minimizeButton" class="titlebar-button" style="background-color: #f8bd34;"></div>
+      <div id="maximizeButton" class="titlebar-button" style="background-color: #d0d0d0;"></div>
+      <div id="closeButton" class="titlebar-button" style="background-color: #ea5b53;"></div>
     </div>
   </div>
 
@@ -44,9 +44,7 @@
 
     const remote = electron.remote;
     const currentWindow = remote.getCurrentWindow();
-    const ipc = electron.ipcRenderer;
-    const nativeImage = electron.nativeImage;
-    const clipboard = electron.clipboard;
+    const ipcRenderer = electron.ipcRenderer;
 
     const electronScreen = electron.screen;
     const screenSize = electronScreen.getPrimaryDisplay().size;
@@ -57,7 +55,6 @@
     require('./js/titlebar.js');
     require('./js/shortcuts.js');
     require('./js/script.js');
-    require('./renderer.js');
   </script>
 
   <script>

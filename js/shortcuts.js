@@ -1,5 +1,5 @@
 Mousetrap.bind(['mod+o'], function (e) {
-    ipc.send('open-file-dialog');
+    ipcRenderer.send('open-file-dialog');
 });
 
 /*Mousetrap.bind('ctrl+c', function(e) {
