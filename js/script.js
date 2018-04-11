@@ -1,11 +1,11 @@
-var picture = $('#picture');
+const picture = $('#picture');
 
-var urlTextbox = $('#urlTextbox');
+const urlTextbox = $('#urlTextbox');
 urlTextbox.hide();
 
-var openImageButton = $('#openImageButton');
-var openUrlButton = $('#openUrlButton');
-var deleteButton = $('#deleteButton');
+const openImageButton = $('#openImageButton');
+const openUrlButton = $('#openUrlButton');
+const deleteButton = $('#deleteButton');
 
 openImageButton.click(showOpenImageDialog);
 
@@ -27,6 +27,7 @@ picture.dblclick(showOpenImageDialog);
 ipcRenderer.on('save-image', function () {
     console.log('save');
 });
+
 ipcRenderer.on('open-image', showOpenImageDialog);
 ipcRenderer.on('open-folder', openFolder);
 ipcRenderer.on('delete-image', deleteImage);
