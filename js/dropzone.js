@@ -17,6 +17,7 @@ holder.ondrop = (e) => {
 
     if (e.dataTransfer.files[0].type.includes('image')) {
         $(picture).attr('src', e.dataTransfer.files[0].path);
+        deleteButton.show();
     }
 
     return false;

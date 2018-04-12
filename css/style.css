@@ -22,7 +22,7 @@ body {
 #urlTextbox {
     width: 100vw;
     height: 2em;
-    background-color: rgba(35, 35, 35, 0.7);
+    background-color: rgba(35, 35, 35, 0.4);
     color: #fff;
     border: none;
     text-align: center
@@ -49,6 +49,11 @@ body {
     display: inline-block;
     cursor: pointer;
     -webkit-app-region: no-drag;
+    transition: opacity 0.25s ease;
+}
+
+.titlebar-button:active {
+    opacity: 0.8;
 }
 
 /* Icon buttons */
@@ -56,6 +61,10 @@ body {
     cursor: pointer;
     transition: color 0.25s ease;
     -webkit-app-region: no-drag;
+}
+
+#lockButton:hover:active {
+    color: #f8bd34;
 }
 
 #openImageButton:hover:active {

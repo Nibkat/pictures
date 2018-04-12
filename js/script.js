@@ -39,6 +39,8 @@ urlTextbox.keypress(function (e) {
                 picture.attr('src', url);
                 urlTextbox.fadeOut('fast');
                 urlTextbox.val('');
+
+                deleteButton.hide();
             } else {
                 dialog.showErrorBox('Invalid image', 'URL is not a valid image');
             }
@@ -55,6 +57,7 @@ function showOpenImageDialog() {
     }, function (files) {
         if (files) {
             picture.attr('src', files[0]);
+            deleteButton.show();
         }
     });
 }
