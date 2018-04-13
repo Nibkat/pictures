@@ -1,3 +1,6 @@
+/*
+* Variables
+*/
 const picture = $('#picture');
 
 const urlTextbox = $('#urlTextbox');
@@ -48,6 +51,9 @@ urlTextbox.keypress((e) => {
     }
 });
 
+/*
+* Showing the image dialog
+*/
 function showOpenImageDialog() {
     dialog.showOpenDialog({
         filters: [{
@@ -62,10 +68,16 @@ function showOpenImageDialog() {
     });
 }
 
+/*
+* Open the folder containing the current image
+*/
 function openFolder() {
     shell.showItemInFolder(picture.attr('src'));
 }
 
+/*
+* Deleting an image
+*/
 function deleteImage() {
     const options = {
         type: 'info',
