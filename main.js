@@ -29,22 +29,22 @@ function createWindow() {
     slashes: true
   }));
 
-  mainWindow.on('closed', function () {
+  mainWindow.on('closed', () => {
     mainWindow = null;
   });
 }
 
-app.on('ready', function () {
+app.on('ready', () => {
   createWindow();
 });
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-app.on('activate', function () {
+app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
@@ -62,7 +62,7 @@ const saveImage = new MenuItem({
   label: 'Save as',
   accelerator: 'CommandOrControl+S'
 });
-saveImage.click = function () {
+saveImage.click = () => {
   mainWindow.send('save-image');
 }
 
@@ -70,7 +70,7 @@ const openMenuItem = new MenuItem({
   label: 'Open',
   accelerator: 'CommandOrControl+O'
 });
-openMenuItem.click = function () {
+openMenuItem.click = () => {
   mainWindow.send('open-image');
 }
 
@@ -78,7 +78,7 @@ const openFolderItem = new MenuItem({
   label: 'Open folder',
   accelerator: 'CommandOrControl+Shift+O'
 });
-openFolderItem.click = function () {
+openFolderItem.click = () => {
   mainWindow.send('open-folder');
 }
 
@@ -86,7 +86,7 @@ const deleteImageItem = new MenuItem({
   label: 'Delete',
   accelerator: 'Delete'
 });
-deleteImageItem.click = function () {
+deleteImageItem.click = () => {
   mainWindow.send('delete-image');
 }
 
@@ -116,7 +116,7 @@ menu.append(quitMenuItem);
 /*
 * Context menu ipc
 */
-ipcMain.on('show-context-menu', function (event) {
+ipcMain.on('show-context-menu', (event) => {
   const win = BrowserWindow.fromWebContents(event.sender);
   menu.popup(win);
 });
@@ -139,7 +139,7 @@ editMenu.append(new MenuItem({
   accelerator: 'CommandOrControl+V'
 }));
 
-ipcMain.on('show-edit-context-menu', function (event) {
+ipcMain.on('show-edit-context-menu', (event) => {
   const win = BrowserWindow.fromWebContents(event.sender);
   editMenu.popup(win);
 });
