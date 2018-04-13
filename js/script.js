@@ -9,22 +9,22 @@ const deleteButton = $('#deleteButton');
 
 openImageButton.click(showOpenImageDialog);
 
-openUrlButton.click(function () {
+openUrlButton.click(() => {
     urlTextbox.fadeToggle('fast');
 });
 
-deleteButton.click(function () {
+deleteButton.click(() => {
     deleteImage();
 });
 
-picture.on('load', function () {
+picture.on('load', () => {
     setWindowSize();
     centerWindow();
 });
 
 picture.dblclick(showOpenImageDialog);
 
-ipcRenderer.on('save-image', function () {
+ipcRenderer.on('save-image', () => {
     console.log('save');
 });
 
@@ -32,9 +32,9 @@ ipcRenderer.on('open-image', showOpenImageDialog);
 ipcRenderer.on('open-folder', openFolder);
 ipcRenderer.on('delete-image', deleteImage);
 
-urlTextbox.keypress(function (e) {
+urlTextbox.keypress((e) => {
     if (e.keyCode == 13) {
-        testImage(urlTextbox.val(), function (url, result) {
+        testImage(urlTextbox.val(), (url, result) => {
             if (result == 'success') {
                 picture.attr('src', url);
                 urlTextbox.fadeOut('fast');
@@ -54,7 +54,7 @@ function showOpenImageDialog() {
             name: 'Image',
             extensions: ['jpeg', 'jpg', 'png', 'gif', 'svg', 'bmp', 'webp', 'tiff', 'ico']
         }]
-    }, function (files) {
+    }, (files) => {
         if (files) {
             picture.attr('src', files[0]);
             deleteButton.show();
@@ -73,7 +73,7 @@ function deleteImage() {
         message: "Are you sure you want to permanently delete this image?",
         buttons: ['Yes', 'No']
     }
-    dialog.showMessageBox(options, function (index) {
+    dialog.showMessageBox(options, (index) => {
         if (index === 0) {
             if (fs.existsSync(picture.attr('src'))) {
                 fs.unlink(picture.attr('src'), (err) => {

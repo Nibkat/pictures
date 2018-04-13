@@ -8,19 +8,22 @@ const lockButton = $('#lockButton');
 const minimizeButton = $('#minimizeButton');
 const closeButton = $('#closeButton');
 
+/*
+* Other variables
+*/
 var locked = false;
 var autoHideTitlebarInterval;
 
 /*
 * Showing & hiding the titlebar
 */
-$('*').mousemove(function (e) {
+$('*').mousemove((e) => {
     if (!locked) {
         clearInterval(autoHideTitlebarInterval);
 
         if (e.clientY <= titlebar[0].getBoundingClientRect().bottom + 5) {
             titlebar.css('opacity', '1');
-            autoHideTitlebarInterval = setInterval(function () {
+            autoHideTitlebarInterval = setInterval(() => {
                 if (!locked) {
                     titlebar.css('opacity', '0');
                 }

@@ -1,23 +1,23 @@
-Mousetrap.bind(['mod+s'], function (e) {
+Mousetrap.bind(['mod+s'], (e) => {
     console.log('save');
 });
 
-Mousetrap.bind(['mod+o'], function (e) {
+Mousetrap.bind(['mod+o'], (e) => {
     showOpenImageDialog();
 });
 
-Mousetrap.bind(['mod+shift+o'], function (e) {
+Mousetrap.bind(['mod+shift+o'], (e) => {
     openFolder();
 });
 
-Mousetrap.bind(['del'], function (e) {
+Mousetrap.bind(['del'], (e) => {
     deleteImage();
 });
 
-/*Mousetrap.bind('ctrl+c', function(e) {
+/*Mousetrap.bind('ctrl+c', (e) => {
     copyImage();
 });*/
 
-Mousetrap.bind(['mod+q'], function (e) {
+Mousetrap.bind(['mod+q'], (e) => {
     currentWindow.close();
 });

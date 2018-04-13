@@ -3,20 +3,20 @@ function testImage(url, callback, timeout) {
     let timedOut = false,
         timer;
     let img = new Image();
-    img.onerror = img.onabort = function () {
+    img.onerror = img.onabort = () => {
         if (!timedOut) {
             clearTimeout(timer);
             callback(url, 'error');
         }
     };
-    img.onload = function () {
+    img.onload = () => {
         if (!timedOut) {
             clearTimeout(timer);
             callback(url, 'success');
         }
     };
     img.src = url;
-    timer = setTimeout(function () {
+    timer = setTimeout(() => {
         timedOut = true;
         callback(url, 'timeout');
     }, timeout);
