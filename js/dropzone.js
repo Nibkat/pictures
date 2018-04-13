@@ -1,4 +1,4 @@
-var holder = document;
+const holder = document;
 
 holder.ondragover = () => {
     return false;
