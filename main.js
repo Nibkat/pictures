@@ -99,18 +99,24 @@ const quitMenuItem = new MenuItem({
 * Append menu items
 */
 menu.append(saveImage);
+
 menu.append(new MenuItem({
   type: 'separator'
 }));
+
 menu.append(openMenuItem);
 menu.append(openFolderItem);
+
 menu.append(new MenuItem({
   type: 'separator'
 }));
+
 menu.append(deleteImageItem);
+
 menu.append(new MenuItem({
   type: 'separator'
 }));
+
 menu.append(quitMenuItem);
 
 /*

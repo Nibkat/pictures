@@ -6,20 +6,6 @@ const picture = $('#picture');
 const urlTextbox = $('#urlTextbox');
 urlTextbox.hide();
 
-const openImageButton = $('#openImageButton');
-const openUrlButton = $('#openUrlButton');
-const deleteButton = $('#deleteButton');
-
-openImageButton.click(showOpenImageDialog);
-
-openUrlButton.click(() => {
-    urlTextbox.fadeToggle('fast');
-});
-
-deleteButton.click(() => {
-    deleteImage();
-});
-
 picture.on('load', () => {
     setWindowSize();
     centerWindow();
@@ -45,7 +31,7 @@ urlTextbox.keypress((e) => {
 
                 deleteButton.hide();
             } else {
-                dialog.showErrorBox('Invalid image', 'URL is not a valid image');
+                dialog.showErrorBox('Invalid image', 'Timed out or the url is not a valid image');
             }
         });
     }
