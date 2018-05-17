@@ -18,6 +18,8 @@ Mousetrap.bind(['del'], (e) => {
     copyImage();
 });*/
 
-Mousetrap.bind(['mod+q'], (e) => {
-    currentWindow.close();
-});
+if (os.platform() != 'darwin') {
+    Mousetrap.bind(['mod+q'], (e) => {
+        currentWindow.close();
+    });
+}

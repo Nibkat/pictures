@@ -8,8 +8,8 @@ const openImageButton = document.getElementById('openImageButton');
 const openUrlButton = document.getElementById('openUrlButton');
 const deleteButton = document.getElementById('deleteButton');
 
-const minimizeButton = document.getElementById('minimizeButton');
-const closeButton = document.getElementById('closeButton');
+const minimizeButton = document.getElementById('minimizeButtonWin');
+const closeButton = document.getElementById('closeButtonWin');
 
 /*
 * Other variables
