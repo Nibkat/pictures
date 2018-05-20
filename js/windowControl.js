@@ -36,6 +36,14 @@ minimizeButtonWin.addEventListener('click', () => {
     currentWindow.minimize();
 });
 
+minimizeButtonMac.addEventListener('click', () => {
+    currentWindow.minimize();
+});
+
 closeButtonWin.addEventListener('click', () => {
+    currentWindow.close();
+});
+
+closeButtonMac.addEventListener('click', () => {
     currentWindow.close();
 });
