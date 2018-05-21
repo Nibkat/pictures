@@ -56,17 +56,15 @@ function deleteImage() {
     }
     dialog.showMessageBox(options, (index) => {
         if (index === 0) {
-            let fileName = unescape(picture.src.replace('file:///', ''));
-
-            if (fs.existsSync(fileName)) {
-                fs.unlink(fileName, (err) => {
+            if (fs.existsSync(picturePath)) {
+                fs.unlink(picturePath, (err) => {
                     if (err) {
                         alert("An error ocurred updating the file" + err.message);
                         console.log(err);
                         return;
                     }
 
-                    picture.src = 'images/deleted.png';
+                    setPicture('images/deleted.png');
                 });
             } else {
                 alert("This file doesn't exist or isn't local, cannot delete");
