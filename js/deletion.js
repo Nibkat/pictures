@@ -1,10 +1,10 @@
 const deleteButton = document.getElementById('deleteButton');
 
 deleteButton.addEventListener('click', () => {
-    deleteImage();
+    moveImageToTrash();
 });
 
-ipcRenderer.on('delete-image', deleteImage);
+ipcRenderer.on('delete-image', moveImageToTrash);
 
 document.addEventListener('imageChange', (e) => {
     if (e.detail.isLocal) {
@@ -35,11 +35,11 @@ function enableDeleting() {
 
     if (os.platform() != 'darwin') {
         Mousetrap.bind(['del'], (e) => {
-            deleteImage();
+            moveImageToTrash();
         });
     } else {
         Mousetrap.bind(['mod+backspace'], (e) => {
-            deleteImage();
+            moveImageToTrash();
         });
     }
 }
@@ -47,17 +47,18 @@ function enableDeleting() {
 /*
  * Deleting an image
  */
-function deleteImage() {
+function moveImageToTrash() {
     const options = {
         type: 'info',
         title: 'Delete image',
-        message: "Are you sure you want to permanently delete this image?",
-        buttons: ['Yes', 'No']
+        message: 'Are you sure you want to delete \'' + path.basename(picturePath) + '\'?',
+        detail: 'You can restore from the Trash.',
+        buttons: ['Move to trash', 'Cancel']
     }
     dialog.showMessageBox(options, (index) => {
         if (index === 0) {
             if (fs.existsSync(picturePath)) {
-                fs.unlink(picturePath, (err) => {
+                /*fs.unlink(picturePath, (err) => {
                     if (err) {
                         alert("An error ocurred updating the file" + err.message);
                         console.log(err);
@@ -65,10 +66,18 @@ function deleteImage() {
                     }
 
                     setPicture('images/deleted.png');
-                });
+                });*/
+
+                shell.moveItemToTrash(picturePath);
+                setPicture('images/deleted.png');
+
             } else {
                 alert("This file doesn't exist or isn't local, cannot delete");
             }
         }
     });
+}
+
+function permaDeleteImage() {
+    
 }

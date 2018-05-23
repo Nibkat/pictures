@@ -15,6 +15,10 @@ const openUrlButton = document.getElementById('openUrlButton');
 var locked = false;
 var autoHideTitlebarInterval;
 
+Mousetrap.bind(['mod+l'], (e) => {
+    toggleTitlebarLock();
+});
+
 /*
 * Showing & hiding the titlebar
 */
@@ -39,14 +43,7 @@ document.addEventListener('mousemove', (e) => {
 * Image control functionality
 */
 lockButton.addEventListener('click', () => {
-    locked = !locked;
-
-    if (locked) {
-        lockButton.style.color = '#f8bd34';
-        titlebar.style.opacity = 1;
-    } else {
-        lockButton.style.color = '#fff';
-    }
+    toggleTitlebarLock();
 });
 
 openImageButton.addEventListener('click', showOpenImageDialog);
@@ -66,3 +63,14 @@ openImageButton.addEventListener('mouseup', () => {
 openUrlButton.addEventListener('click', () => {
     fadeToggle(urlTextbox, 250);
 });
+
+function toggleTitlebarLock() {
+    locked = !locked;
+
+    if (locked) {
+        lockButton.style.color = '#f8bd34';
+        titlebar.style.opacity = 1;
+    } else {
+        lockButton.style.color = '#fff';
+    }
+}
