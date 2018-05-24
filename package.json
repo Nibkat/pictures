@@ -1,5 +1,5 @@
 {
-  "name": "pictures",
+  "name": "Pictures",
   "version": "0.0.1",
   "description": "A minimal picture viewing application",
   "main": "main.js",

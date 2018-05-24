@@ -15,7 +15,7 @@ const openUrlButton = document.getElementById('openUrlButton');
 var locked = false;
 var autoHideTitlebarInterval;
 
-Mousetrap.bind(['mod+l'], (e) => {
+Mousetrap.bind(['mod+l'], () => {
     toggleTitlebarLock();
 });
 
