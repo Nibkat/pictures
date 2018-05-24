@@ -26,7 +26,7 @@ ipcRenderer.on('save-image', () => {
 });
 
 ipcRenderer.on('open-image', showOpenImageDialog);
-ipcRenderer.on('open-folder', openFolder);
+ipcRenderer.on('reveal', openFolder);
 
 urlTextbox.addEventListener('keypress', (e) => {
     if (e.keyCode == 13) {
