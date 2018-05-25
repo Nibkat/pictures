@@ -14,6 +14,10 @@ Mousetrap.bind(['mod+n'], () => {
     ipcRenderer.send('new-window');
 });
 
+Mousetrap.bind(['mod+w'], () => {
+    currentWindow.close();
+});
+
 if (os.platform() != 'darwin') {
     Mousetrap.bind(['mod+q'], () => {
         currentWindow.close();

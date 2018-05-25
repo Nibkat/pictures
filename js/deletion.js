@@ -4,9 +4,6 @@ deleteButton.addEventListener('click', () => {
     moveImageToTrash();
 });
 
-ipcRenderer.on('delete', moveImageToTrash);
-ipcRenderer.on('perma-delete', permaDeleteImage);
-
 document.addEventListener('imageChange', (e) => {
     if (e.detail.isLocal) {
         enableDeleting();
