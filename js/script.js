@@ -59,7 +59,10 @@ function openFolder() {
     shell.showItemInFolder(picturePath);
 }
 
-function setPicture(path) {
-    picture.src = path;
-    picturePath = path;
+function setPicture(filePath) {
+    picture.src = filePath;
+    picturePath = filePath;
+
+    let title = path.basename(filePath);
+    currentWindow.setTitle(title);
 }

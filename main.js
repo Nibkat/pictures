@@ -26,7 +26,7 @@ function createWindow() {
   window = new BrowserWindow({
     width: 512,
     height: 512,
-    icon: 'images/picture.png',
+    icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
     resizable: false,
     frame: false
   });
