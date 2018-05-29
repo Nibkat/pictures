@@ -38,7 +38,7 @@ urlTextbox.addEventListener('keypress', (e) => {
 
 /*
  * Showing the image dialog
- */
+*/
 function showOpenImageDialog() {
     dialog.showOpenDialog({
         filters: [{
@@ -54,7 +54,7 @@ function showOpenImageDialog() {
 
 /*
  * Open the folder containing the current image
- */
+*/
 function openFolder() {
     shell.showItemInFolder(picturePath);
 }

@@ -6,8 +6,8 @@ const {
 var pastedImageCount = 0;
 
 /*
-* Shortcuts
-*/
+ * Shortcuts
+ */
 Mousetrap.bind(['mod+v'], () => {
     pastePicture();
 });
@@ -16,26 +16,26 @@ Mousetrap.bind(['mod+c'], () => {
     copyPicture();
 });
 
-Mousetrap.bind(['alt+shift+c'], () => {
+Mousetrap.bind(['mod+shift+c'], () => {
     copyPicturePath();
 });
 
 /*
-* Functions
-*/
+ * Functions
+ */
 function pastePicture() {
     let availableFormats = clipboard.availableFormats();
-    
-    if (availableFormats.includes('image/png') || availableFormats.includes('image/jpg')) {
-        let image = clipboard.readImage();
 
+    if (availableFormats.includes('image/png') || availableFormats.includes('image/jpg')) {
         let tempDir = __dirname + "\\temp";
-        let fileDir = tempDir + '\\unknown' + pastedImageCount + '.jpg';
 
         if (!fs.existsSync(tempDir)) {
             fs.mkdirSync(tempDir);
         }
 
+        let fileDir = tempDir + '\\unknown' + pastedImageCount + '.jpg';
+
+        let image = clipboard.readImage();
         let buffer = image.toJPEG(100);
 
         fs.writeFile(fileDir, buffer, "binary", function (err) {
@@ -53,8 +53,6 @@ function pastePicture() {
         testImage(clipboardText, (url, result) => {
             if (result === 'success') {
                 setPicture(url);
-            } else {
-                dialog.showErrorBox('Invalid image', 'Timed out or the url is not a valid image');
             }
         });
     }
