@@ -23,6 +23,12 @@ const imageContextMenuTemplate = [{
 }, {
     type: 'separator'
 }, {
+    label: 'Paste',
+    accelerator: 'CommandOrControl+V',
+    click: () => {
+        pastePicture();
+    }
+}, {
     label: 'Copy',
     accelerator: 'CommandOrControl+C',
     click: () => {
