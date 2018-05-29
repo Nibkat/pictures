@@ -23,6 +23,20 @@ const imageContextMenuTemplate = [{
 }, {
     type: 'separator'
 }, {
+    label: 'Copy',
+    accelerator: 'CommandOrControl+C',
+    click: () => {
+        copyPicture();
+    }
+}, {
+    label: 'Copy Path',
+    accelerator: 'Alt+Shift+C',
+    click: () => {
+        copyPicturePath();
+    }
+}, {
+    type: 'separator'
+}, {
     label: 'Delete',
     submenu: [{
         label: 'Delete',
@@ -51,6 +65,9 @@ const imageContextMenuTemplate = [{
     click: () => {
         currentWindow.close();
     }
+}, {
+    role: 'toggledevtools',
+    accelerator: 'CommandOrControl+Shift+I'
 }, {
     type: 'separator'
 }, {
