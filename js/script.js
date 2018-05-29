@@ -24,7 +24,7 @@ picture.addEventListener('dblclick', showOpenImageDialog);
 urlTextbox.addEventListener('keypress', (e) => {
     if (e.keyCode == 13) {
         testImage(urlTextbox.value, (url, result) => {
-            if (result == 'success') {
+            if (result === 'success') {
                 setPicture(url);
                 
                 fadeOut(urlTextbox, 250);
