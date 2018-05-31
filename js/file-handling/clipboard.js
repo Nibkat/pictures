@@ -59,15 +59,9 @@ function pastePicture() {
 }
 
 function copyPicture() {
-    if (picturePath) {
-        let image = nativeImage.createFromPath(picturePath);
-
-        clipboard.writeImage(image);
-    }
+    currentPicture.copyPicture();
 }
 
 function copyPicturePath() {
-    if (picturePath) {
-        clipboard.writeText(picturePath);
-    }
+    currentPicture.copyPicturePath();
 }

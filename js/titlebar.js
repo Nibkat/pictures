@@ -1,8 +1,8 @@
 const titlebar = document.getElementById('titlebar');
 
 /*
-* Image control
-*/
+ * Image control
+ */
 const imageControl = document.getElementById('imageControl');
 
 const lockButton = document.getElementById('lockButton');
@@ -10,8 +10,8 @@ const openImageButton = document.getElementById('openImageButton');
 const openUrlButton = document.getElementById('openUrlButton');
 
 /*
-* Other variables
-*/
+ * Other variables
+ */
 var locked = false;
 var autoHideTitlebarInterval;
 
@@ -20,8 +20,8 @@ Mousetrap.bind(['mod+l'], () => {
 });
 
 /*
-* Showing & hiding the titlebar
-*/
+ * Showing & hiding the titlebar
+ */
 document.addEventListener('mousemove', (e) => {
     if (!locked) {
         clearInterval(autoHideTitlebarInterval);
@@ -40,8 +40,8 @@ document.addEventListener('mousemove', (e) => {
 });
 
 /*
-* Image control functionality
-*/
+ * Image control functionality
+ */
 lockButton.addEventListener('click', () => {
     toggleTitlebarLock();
 });
