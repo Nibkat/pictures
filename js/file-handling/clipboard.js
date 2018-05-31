@@ -1,8 +1,3 @@
-const {
-    clipboard,
-    nativeImage
-} = require('electron');
-
 var pastedImageCount = 0;
 
 /*
@@ -13,11 +8,11 @@ Mousetrap.bind(['mod+v'], () => {
 });
 
 Mousetrap.bind(['mod+c'], () => {
-    copyPicture();
+    currentPicture.copyPicture();
 });
 
 Mousetrap.bind(['mod+shift+c'], () => {
-    copyPicturePath();
+    currentPicture.copyPicturePath();
 });
 
 /*
@@ -56,12 +51,4 @@ function pastePicture() {
             }
         });
     }
-}
-
-function copyPicture() {
-    currentPicture.copyPicture();
-}
-
-function copyPicturePath() {
-    currentPicture.copyPicturePath();
 }

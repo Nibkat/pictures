@@ -76,3 +76,7 @@
 #deleteButton:hover:active {
     color: #ea5b53;
 }
+
+#closeButtonWin:hover > svg > line {
+    stroke: #ea5b53;
+}
