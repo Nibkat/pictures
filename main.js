@@ -1,5 +1,7 @@
 const electron = require('electron');
 const fs = require('fs');
+const path = require('path');
+const url = require('url');
 
 const {
   app,
@@ -7,9 +9,6 @@ const {
   ipcMain,
   Menu
 } = electron;
-
-const path = require('path');
-const url = require('url');
 
 const dockMenu = Menu.buildFromTemplate([{
   label: 'New Window',
