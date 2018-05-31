@@ -1,6 +1,6 @@
 class Picture {
-    constructor(path) {
-        this.path = path.resolve(path);
+    constructor(picturePath) {
+        this.path = path.resolve(picturePath);
     }
 
     isLocal() {
