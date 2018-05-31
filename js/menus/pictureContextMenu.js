@@ -1,7 +1,7 @@
 const Menu = remote.Menu;
 
-const imageContextMenuTemplate = [{
-    label: 'Save as',
+const pictureContextMenuTemplate = [{
+    label: 'Save As',
     accelerator: 'CommandOrControl+S',
     click: () => {
         console.log('save');
@@ -18,7 +18,7 @@ const imageContextMenuTemplate = [{
     label: 'Reveal in ' + (os.platform() === 'darwin' ? 'Finder' : 'Explorer'),
     accelerator: 'CommandOrControl+Shift+O',
     click: () => {
-        openFolder();
+        currentPicture.revealInFolder();
     }
 }, {
     type: 'separator'
@@ -29,7 +29,7 @@ const imageContextMenuTemplate = [{
         pastePicture();
     }
 }, {
-    label: 'Copy image',
+    label: 'Copy Image',
     accelerator: 'CommandOrControl+C',
     click: () => {
         copyPicture();
@@ -51,7 +51,7 @@ const imageContextMenuTemplate = [{
             moveImageToTrash();
         }
     }, {
-        label: 'Delete permanently',
+        label: 'Delete Permanently',
         accelerator: os.platform() === 'darwin' ? 'CommandOrControl+Shift+Backspace' : 'CommandOrControl+Delete',
         click: () => {
             permaDeleteImage();
@@ -60,13 +60,13 @@ const imageContextMenuTemplate = [{
 }, {
     type: 'separator'
 }, {
-    label: 'New window',
+    label: 'New Window',
     accelerator: 'CommandOrControl+N',
     click: () => {
         ipcRenderer.send('new-window');
     }
 }, {
-    label: 'Close window',
+    label: 'Close Window',
     accelerator: 'CommandOrControl+W',
     click: () => {
         currentWindow.close();
@@ -81,10 +81,13 @@ const imageContextMenuTemplate = [{
     accelerator: 'CommandOrControl+Q'
 }];
 
-const menu = Menu.buildFromTemplate(imageContextMenuTemplate);
+var pictureContextMenu = Menu.buildFromTemplate(pictureContextMenuTemplate);
 
 picture.addEventListener('contextmenu', (e) => {
-    e.preventDefault()
-    rightClickPosition = { x: e.x, y: e.y }
-    menu.popup(remote.getCurrentWindow())
+    e.preventDefault();
+    rightClickPosition = {
+        x: e.x,
+        y: e.y
+    };
+    pictureContextMenu.popup(remote.getCurrentWindow());
 }, false);
