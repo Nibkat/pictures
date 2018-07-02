@@ -1,8 +1,6 @@
 var pastedImageCount = 0;
 
-/*
- * Shortcuts
- */
+// #region shortcuts
 Mousetrap.bind(['mod+v'], () => {
     pastePicture();
 });
@@ -14,10 +12,9 @@ Mousetrap.bind(['mod+c'], () => {
 Mousetrap.bind(['mod+shift+c'], () => {
     currentPicture.copyPicturePath();
 });
+// #endregion
 
-/*
- * Functions
- */
+// #region functions
 function pastePicture() {
     let availableFormats = clipboard.availableFormats();
 
@@ -52,3 +49,4 @@ function pastePicture() {
         });
     }
 }
+// #endregion

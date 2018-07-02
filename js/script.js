@@ -1,20 +1,19 @@
-/*
- * Variables
- */
+// #region variables
 const picture = document.getElementById('picture');
 var currentPicture;
 
 const urlTextbox = document.getElementById('urlTextbox');
 urlTextbox.style.display = 'none';
+// #endregion
 
-// Image load event
+// image load event
 picture.addEventListener('load', () => {
     let pictureLoadEvent = new CustomEvent('pictureChange');
 
     document.dispatchEvent(pictureLoadEvent);
 });
 
-// Double clicking
+// double clicking
 picture.addEventListener('dblclick', showOpenImageDialog);
 
 urlTextbox.addEventListener('keypress', (e) => {
@@ -32,9 +31,7 @@ urlTextbox.addEventListener('keypress', (e) => {
     }
 });
 
-/*
- * Showing the image dialog
- */
+// showing the image dialog
 function showOpenImageDialog() {
     dialog.showOpenDialog({
         filters: [{

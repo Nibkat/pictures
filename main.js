@@ -1,3 +1,4 @@
+// #region Variables
 const electron = require('electron');
 const fs = require('fs');
 const path = require('path');
@@ -10,28 +11,32 @@ const {
   Menu
 } = electron;
 
+var windows = [];
+// #endregion
+
+// #region Mac OS dock
 const dockMenu = Menu.buildFromTemplate([{
   label: 'New Window',
   click: () => {
     createWindow();
   }
 }]);
+// #endregion
 
+// #region Windows taskbar
 if (process.platform === 'win32') {
-  app.setUserTasks([
-    {
-      program: process.execPath,
-      arguments: '--new-window',
-      iconPath: process.execPath,
-      iconIndex: 0,
-      title: 'New Window',
-      description: 'Opens a new window'
-    }
-  ]);
+  app.setUserTasks([{
+    program: process.execPath,
+    arguments: '--new-window',
+    iconPath: process.execPath,
+    iconIndex: 0,
+    title: 'New Window',
+    description: 'Opens a new window'
+  }]);
 }
+// #endregion
 
-let windows = [];
-
+// #region window
 function createWindow() {
   let window;
 
@@ -64,7 +69,9 @@ function createWindow() {
 
   windows.push(window);
 }
+// #endregion
 
+// #region app setup
 app.on('ready', () => {
   // Add custom dock menu
   if (process.platform === 'darwin') {
@@ -100,22 +107,20 @@ app.on('before-quit', () => {
     });
     fs.rmdirSync(tempDir);
   }
-})
+});
+// #endregion
 
-/*
- * IPC events
- */
-ipcMain.on('new-window', (e) => {
+// #region IPC events
+ipcMain.on('new-window', () => {
   createWindow();
 });
 
 ipcMain.on('quit', () => {
   app.quit();
-})
+});
+// #endregion
 
-/*
- * Edit context menu
- */
+// #region edit menu
 const simpleEditMenu = Menu.buildFromTemplate([{
   role: 'cut',
   accelerator: 'CommandOrControl+X'
@@ -131,3 +136,4 @@ ipcMain.on('show-edit-context-menu', (e) => {
   const win = BrowserWindow.fromWebContents(e.sender);
   simpleEditMenu.popup(win);
 });
+// #endregion

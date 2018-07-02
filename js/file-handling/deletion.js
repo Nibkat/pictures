@@ -13,9 +13,7 @@ document.addEventListener('pictureChange', () => {
     }
 });
 
-/*
- * Enabling and disabling deleting
- */
+// #region enabling and disabling deleting
 function disableDeleting() {
     deleteButton.style.display = 'none';
 
@@ -59,10 +57,9 @@ function enableDeleting() {
     pictureContextMenuTemplate[9].submenu[1].enabled = true;
     pictureContextMenu = Menu.buildFromTemplate(pictureContextMenuTemplate);
 }
+// #endregion
 
-/*
- * Deleting an image
- */
+// #region delete functions
 function moveImageToTrash() {
     let deletionLocation = os.platform() === 'darwin' ? 'Trash' : 'Recycling Bin';
 
@@ -97,3 +94,4 @@ function permaDeleteImage() {
         }
     });
 }
+// #endregion
