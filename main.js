@@ -41,7 +41,8 @@ function createWindow() {
     height: 512,
     icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
     resizable: false,
-    frame: false
+    frame: false,
+    fullscreenable: false
   });
 
   // Load content

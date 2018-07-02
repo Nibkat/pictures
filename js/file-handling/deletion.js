@@ -5,7 +5,7 @@ deleteButton.addEventListener('click', () => {
     moveImageToTrash();
 });
 
-document.addEventListener('pictureChange', (e) => {
+document.addEventListener('pictureChange', () => {
     if (currentPicture.isLocal() && !currentPicture.isAsset()) {
         enableDeleting();
     } else {
@@ -27,7 +27,9 @@ function disableDeleting() {
         Mousetrap.unbind(['mod+shift+backspace']);
     }
 
-    pictureContextMenuTemplate[9].enabled = false;
+    //pictureContextMenuTemplate[9].enabled = false;
+    pictureContextMenuTemplate[9].submenu[0].enabled = false;
+    pictureContextMenuTemplate[9].submenu[1].enabled = false;
     pictureContextMenu = Menu.buildFromTemplate(pictureContextMenuTemplate);
 }
 
@@ -52,7 +54,9 @@ function enableDeleting() {
         });
     }
 
-    pictureContextMenuTemplate[9].enabled = true;
+    //pictureContextMenuTemplate[9].enabled = true;
+    pictureContextMenuTemplate[9].submenu[0].enabled = true;
+    pictureContextMenuTemplate[9].submenu[1].enabled = true;
     pictureContextMenu = Menu.buildFromTemplate(pictureContextMenuTemplate);
 }
 
@@ -61,6 +65,7 @@ function enableDeleting() {
  */
 function moveImageToTrash() {
     let deletionLocation = os.platform() === 'darwin' ? 'Trash' : 'Recycling Bin';
+
 
     let options = {
         type: 'info',
