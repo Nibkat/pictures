@@ -1,5 +1,5 @@
 const electron = require('electron');
-const ipc = require('electron').ipcMain;
+const ipcMain = require('electron').ipcMain;
 const dialog = require('electron').dialog;
 const path = require('path');
 const url = require('url');
@@ -59,6 +59,6 @@ app.on('activate', function () {
   }
 });
 
-ipc.on('open-file-dialog', function (event) {
+ipcMain.on('open-file-dialog', function (event) {
   openImageDialog();
 });

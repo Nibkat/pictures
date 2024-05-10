@@ -10,14 +10,14 @@ centerWindow();
 setWindowSize();
 
 selectImage.click(function (event) {
-    ipc.send('open-file-dialog');
+    ipcRenderer.send('open-file-dialog');
 });
 
 openUrl.click(function () {
     urlTextbox.fadeToggle('fast');
 });
 
-ipc.on('selected-image', function (event, path) {
+ipcRenderer.on('selected-image', function (event, path) {
     picture.attr('src', `${path}`);
 });
 
@@ -27,7 +27,7 @@ picture.on('load', function () {
 });
 
 picture.dblclick(function () {
-    ipc.send('open-file-dialog');
+    ipcRenderer.send('open-file-dialog');
 });
 
 urlTextbox.keypress(function (e) {
