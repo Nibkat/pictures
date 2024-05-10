@@ -18,7 +18,7 @@ Mousetrap.bind(['mod+w'], () => {
     currentWindow.close();
 });
 
-if (os.platform() != 'darwin') {
+if (os.platform() !== 'darwin') {
     Mousetrap.bind(['mod+q'], () => {
         ipcRenderer.send('quit');
     });

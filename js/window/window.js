@@ -18,6 +18,14 @@ function setWindowSize() {
     currentWindow.setSize(Math.round(picture.width), Math.round(picture.height));
 }
 
+function toggleAlwaysOnTop() {
+    let alwaysOnTop = !currentWindow.isAlwaysOnTop();
+
+    currentWindow.setAlwaysOnTop(alwaysOnTop);
+
+    pictureContextMenuTemplate[14].checked = alwaysOnTop;
+}
+
 /*
  * Initial resize & center
  */
@@ -30,4 +38,11 @@ centerWindow();
 document.addEventListener('pictureChange', (e) => {
     setWindowSize();
     centerWindow();
+});
+
+/*
+ * Shortcuts
+ */
+Mousetrap.bind(['mod+t'], () => {
+    toggleAlwaysOnTop();
 });

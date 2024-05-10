@@ -22,13 +22,13 @@ function pastePicture() {
     let availableFormats = clipboard.availableFormats();
 
     if (availableFormats.includes('image/png') || availableFormats.includes('image/jpg')) {
-        let tempDir = __dirname + "\\temp";
+        let tempDir = __dirname + "/temp";
 
         if (!fs.existsSync(tempDir)) {
             fs.mkdirSync(tempDir);
         }
 
-        let fileDir = tempDir + '\\unknown' + pastedImageCount + '.jpg';
+        let fileDir = tempDir + '/unknown' + pastedImageCount + '.jpg';
 
         let image = clipboard.readImage();
         let buffer = image.toJPEG(100);

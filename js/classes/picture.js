@@ -8,7 +8,7 @@ class Picture {
     }
 
     isAsset() {
-        let assetDirectory = __dirname + '\\assets';
+        let assetDirectory =  path.normalize(__dirname + '/assets');
 
         return this.path.startsWith(assetDirectory);
     }
@@ -18,7 +18,7 @@ class Picture {
     }
 
     moveToTrash() {
-        if (this.isLocal()) {
+        if (this.isLocal() && !this.isAsset()) {
             shell.moveItemToTrash(this.path);
 
             return true;
@@ -30,15 +30,15 @@ class Picture {
     }
 
     permaDelete() {
-        if (this.isLocal()) {
+        if (this.isLocal() && !this.isAsset()) {
             fs.unlink(this.path, (err) => {
                 if (err) {
                     alert("An error ocurred updating the file" + err.message);
                     console.log(err);
                     return false;
-                } else {
-                    return true;
                 }
+
+                return true;
             });
         } else {
             alert("This file doesn't exist or isn't local, cannot delete");

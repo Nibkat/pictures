@@ -30,13 +30,13 @@ const pictureContextMenuTemplate = [{
     label: 'Copy Image',
     accelerator: 'CommandOrControl+C',
     click: () => {
-        copyPicture();
+        currentPicture.copyPicture();
     }
 }, {
     label: 'Copy Path',
     accelerator: 'CommandOrControl+Shift+C',
     click: () => {
-        copyPicturePath();
+        currentPicture.copyPicturePath();
     }
 }, {
     type: 'separator'
@@ -68,6 +68,13 @@ const pictureContextMenuTemplate = [{
     accelerator: 'CommandOrControl+W',
     click: () => {
         currentWindow.close();
+    }
+}, {
+    label: 'Always On Top',
+    accelerator: 'CommandOrControl+T',
+    type: 'checkbox',
+    click: () => {
+        toggleAlwaysOnTop();
     }
 }, {
     role: 'toggledevtools',
