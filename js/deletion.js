@@ -68,7 +68,7 @@ function moveImageToTrash() {
         if (index === 0) {
             if (fs.existsSync(picturePath)) {
                 shell.moveItemToTrash(picturePath);
-                setPicture('images/deleted.png');
+                setPicture('assets/images/deleted.png');
 
             } else {
                 alert("This file doesn't exist or isn't local, cannot delete");
@@ -94,7 +94,7 @@ function permaDeleteImage() {
                         return;
                     }
 
-                    setPicture('images/deleted.png');
+                    setPicture('assets/images/deleted.png');
                 });
 
             } else {
