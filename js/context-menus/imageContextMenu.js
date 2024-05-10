@@ -29,14 +29,14 @@ const imageContextMenuTemplate = [{
         pastePicture();
     }
 }, {
-    label: 'Copy',
+    label: 'Copy image',
     accelerator: 'CommandOrControl+C',
     click: () => {
         copyPicture();
     }
 }, {
     label: 'Copy Path',
-    accelerator: 'Alt+Shift+C',
+    accelerator: 'CommandOrControl+Shift+C',
     click: () => {
         copyPicturePath();
     }
