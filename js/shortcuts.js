@@ -20,6 +20,6 @@ Mousetrap.bind(['mod+w'], () => {
 
 if (os.platform() != 'darwin') {
     Mousetrap.bind(['mod+q'], () => {
-        currentWindow.close();
+        ipcRenderer.send('quit');
     });
 }

@@ -73,11 +73,15 @@ app.on('activate', () => {
 });
 
 /*
- * Creating new windows ipc
+ * IPC events
  */
 ipcMain.on('new-window', (e) => {
   createWindow();
 });
+
+ipcMain.on('quit', () => {
+  app.quit();
+})
 
 /*
  * Edit context menu
