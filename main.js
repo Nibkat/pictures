@@ -112,3 +112,21 @@ ipcMain.on('show-context-menu', function (event) {
   const win = BrowserWindow.fromWebContents(event.sender);
   menu.popup(win);
 });
+
+// Edit context menu
+const editMenu = new Menu();
+
+editMenu.append(new MenuItem({
+  role: 'cut'
+}));
+editMenu.append(new MenuItem({
+  role: 'copy'
+}));
+editMenu.append(new MenuItem({
+  role: 'paste'
+}));
+
+ipcMain.on('show-edit-context-menu', function (event) {
+  const win = BrowserWindow.fromWebContents(event.sender);
+  editMenu.popup(win);
+});
