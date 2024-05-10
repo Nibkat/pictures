@@ -3,6 +3,11 @@ const {
     nativeImage
 } = require('electron');
 
+var pastedImageCount = 0;
+
+/*
+* Shortcuts
+*/
 Mousetrap.bind(['mod+v'], () => {
     pastePicture();
 });
@@ -15,8 +20,9 @@ Mousetrap.bind(['alt+shift+c'], () => {
     copyPicturePath();
 });
 
-var pastedImageCount = 0;
-
+/*
+* Functions
+*/
 function pastePicture() {
     let availableFormats = clipboard.availableFormats();
     
