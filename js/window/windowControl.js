@@ -1,14 +1,14 @@
 /*
-* Window control win
-*/
+ * Window control win
+ */
 const windowControlWin = document.getElementById('windowControlWin');
 
 const minimizeButtonWin = document.getElementById('minimizeButtonWin');
 const closeButtonWin = document.getElementById('closeButtonWin');
 
 /*
-* Window control mac
-*/
+ * Window control mac
+ */
 const windowControlMac = document.getElementById('windowControlMac');
 
 const minimizeButtonMac = document.getElementById('minimizeButtonMac');
@@ -16,8 +16,8 @@ const maximizeButtonMac = document.getElementById('maximizeButtonMac');
 const closeButtonMac = document.getElementById('closeButtonMac');
 
 /*
-* OS specific titlebar
-*/
+ * OS specific titlebar
+ */
 if (os.platform() === 'darwin') {
     imageControl.style.cssFloat = 'right';
 
@@ -43,8 +43,8 @@ if (os.platform() === 'darwin') {
 }
 
 /*
-* Window control functionality
-*/
+ * Window control functionality
+ */
 minimizeButtonWin.addEventListener('click', () => {
     currentWindow.minimize();
 });
