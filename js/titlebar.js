@@ -18,7 +18,7 @@ $('*').mousemove(function (e) {
     if (!locked) {
         clearInterval(autoHideTitlebarInterval);
 
-        if (e.clientY <= titlebar[0].getBoundingClientRect().bottom) {
+        if (e.clientY <= titlebar[0].getBoundingClientRect().bottom + 5) {
             titlebar.css('opacity', '1');
             autoHideTitlebarInterval = setInterval(function () {
                 if (!locked) {
