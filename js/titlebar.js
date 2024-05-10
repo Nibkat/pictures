@@ -1,27 +1,22 @@
+// #region variables
 const titlebar = document.getElementById('titlebar');
 
-/*
- * Image control
- */
 const imageControl = document.getElementById('imageControl');
 
+// titlebar buttons
 const lockButton = document.getElementById('lockButton');
 const openImageButton = document.getElementById('openImageButton');
 const openUrlButton = document.getElementById('openUrlButton');
 
-/*
- * Other variables
- */
 var locked = false;
 var autoHideTitlebarInterval;
+// #endregion
 
 Mousetrap.bind(['mod+l'], () => {
     toggleTitlebarLock();
 });
 
-/*
- * Showing & hiding the titlebar
- */
+// showing & hiding the titlebar
 document.addEventListener('mousemove', (e) => {
     if (!locked) {
         clearInterval(autoHideTitlebarInterval);
@@ -39,9 +34,7 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
-/*
- * Image control functionality
- */
+// image control functionality
 lockButton.addEventListener('click', () => {
     toggleTitlebarLock();
 });

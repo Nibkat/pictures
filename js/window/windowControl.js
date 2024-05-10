@@ -1,23 +1,19 @@
-/*
- * Window control win
- */
+// #region variables
+// Window control win
 const windowControlWin = document.getElementById('windowControlWin');
 
 const minimizeButtonWin = document.getElementById('minimizeButtonWin');
 const closeButtonWin = document.getElementById('closeButtonWin');
 
-/*
- * Window control mac
- */
+// Window control mac
 const windowControlMac = document.getElementById('windowControlMac');
 
 const minimizeButtonMac = document.getElementById('minimizeButtonMac');
 const maximizeButtonMac = document.getElementById('maximizeButtonMac');
 const closeButtonMac = document.getElementById('closeButtonMac');
+// #endregion
 
-/*
- * OS specific titlebar
- */
+// #region OS specific titlebar
 if (os.platform() === 'darwin') {
     imageControl.style.cssFloat = 'right';
 
@@ -41,10 +37,9 @@ if (os.platform() === 'darwin') {
     windowControlWin.style.display = 'inline';
     windowControlMac.style.display = 'none';
 }
+// #endregion
 
-/*
- * Window control functionality
- */
+// #region window control functionality
 minimizeButtonWin.addEventListener('click', () => {
     currentWindow.minimize();
 });
@@ -60,3 +55,4 @@ closeButtonWin.addEventListener('click', () => {
 closeButtonMac.addEventListener('click', () => {
     currentWindow.close();
 });
+// #endregion
