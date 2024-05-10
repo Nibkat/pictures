@@ -1,12 +1,20 @@
 const titlebar = document.getElementById('titlebar');
 
 /*
-* Buttons variables
+* Image control
 */
+const imageControl = document.getElementById('imageControl');
+
 const lockButton = document.getElementById('lockButton');
 const openImageButton = document.getElementById('openImageButton');
 const openUrlButton = document.getElementById('openUrlButton');
 const deleteButton = document.getElementById('deleteButton');
+
+/*
+* Window control
+*/
+const windowControlWin = document.getElementById('windowControlWin');
+const windowControlMac = document.getElementById('windowControlMac');
 
 const minimizeButton = document.getElementById('minimizeButtonWin');
 const closeButton = document.getElementById('closeButtonWin');
@@ -16,6 +24,21 @@ const closeButton = document.getElementById('closeButtonWin');
 */
 var locked = false;
 var autoHideTitlebarInterval;
+
+/*
+* OS specific titlebar
+*/
+if (os.platform() === 'darwin') {
+    imageControl.style.cssFloat = 'right';
+
+    windowControlWin.style.display = 'none';
+    windowControlMac.style.display = 'inline';
+} else {
+    imageControl.style.cssFloat = 'left';
+
+    windowControlWin.style.display = 'inline';
+    windowControlMac.style.display = 'none';
+}
 
 /*
 * Showing & hiding the titlebar
@@ -38,7 +61,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 /*
-* Button functionality
+* Image control functionality
 */
 lockButton.addEventListener('click', () => {
     locked = !locked;
@@ -61,6 +84,9 @@ deleteButton.addEventListener('click', () => {
     deleteImage();
 });
 
+/*
+* Window control functionality
+*/
 minimizeButton.addEventListener('click', () => {
     currentWindow.minimize();
 });
