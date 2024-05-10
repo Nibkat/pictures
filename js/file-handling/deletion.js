@@ -67,7 +67,7 @@ function moveImageToTrash() {
         message: 'Are you sure you want to delete \'' + path.basename(currentPicture.path) + '\'?',
         detail: 'You can restore from the ' + deletionLocation + '.',
         buttons: ['Move to ' + deletionLocation, 'Cancel']
-    }
+    };
     dialog.showMessageBox(options, (index) => {
         if (index === 0) {
             if (currentPicture.moveToTrash()) {
@@ -83,7 +83,7 @@ function permaDeleteImage() {
         message: 'Are you sure you want to permanently delete \'' + path.basename(currentPicture.path) + '\'?',
         detail: 'You won\'t be able to restore this file',
         buttons: ['Permanently delete', 'Cancel']
-    }
+    };
     dialog.showMessageBox(options, (index) => {
         if (index === 0) {
             if (currentPicture.permaDelete()) {

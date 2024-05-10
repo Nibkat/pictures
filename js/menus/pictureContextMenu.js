@@ -84,10 +84,10 @@ const pictureContextMenuTemplate = [{
 var pictureContextMenu = Menu.buildFromTemplate(pictureContextMenuTemplate);
 
 picture.addEventListener('contextmenu', (e) => {
-    e.preventDefault()
+    e.preventDefault();
     rightClickPosition = {
         x: e.x,
         y: e.y
-    }
-    pictureContextMenu.popup(remote.getCurrentWindow())
+    };
+    pictureContextMenu.popup(remote.getCurrentWindow());
 }, false);
