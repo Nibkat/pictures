@@ -38,8 +38,10 @@ function setWindowSize() {
 
     if (picture.height >= screenSize.height) {
         picture.height = screenSize.height - 128;
-    } else if (picture.width >= screenSize.width) {
-        picture.width = screenSize.width - 512;
+    }
+    if (picture.width >= screenSize.width) {
+        picture.width = screenSize.width - 128;
+        picture.removeAttribute("height");
     }
 
     remote.getCurrentWindow().setSize(picture.width, picture.height);
