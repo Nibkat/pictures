@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url('transparent.png');
+}
+
+#picture {
+    -webkit-app-region: drag;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.nodrag {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.button-container {
+    background-color: rgba(35, 35, 35, 0.4);
+    color: white;
+    font-size: 2em;
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    -webkit-app-region: no-drag;
+}
+
+.button-container:hover,
+.button-container:active {
+    opacity: 1;
+}
+
+.icon-button {
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+
+#minimizeButton:hover:active {
+    color: #F8BD34;
+}
+
+#closeButton:hover:active {
+    color: #EA5B53;
+}
+
+#select-directory:hover:active {
+    color: #63CD40;
+}
