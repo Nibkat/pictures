@@ -63,9 +63,9 @@ body {
     -webkit-app-region: no-drag;
 }
 
-#lockButton:hover:active {
+/*#lockButton:hover:active {
     color: #f8bd34;
-}
+}*/
 
 #openImageButton:hover:active {
     color: #F9D774;

@@ -1,28 +1,54 @@
 const titlebar = $('#titlebar');
 
-// Buttons
+/*
+* Buttons
+*/
+const lockButton = $('#lockButton');
+
 const minimizeButton = $('#minimizeButton');
 const closeButton = $('#closeButton');
 
+var locked = false;
 var autoHideTitlebarInterval;
 
+/*
+* Showing & hiding the titlebar
+*/
 $('*').mousemove(function (e) {
-    clearInterval(autoHideTitlebarInterval);
+    if (!locked) {
+        clearInterval(autoHideTitlebarInterval);
 
-    if (e.clientY <= titlebar[0].getBoundingClientRect().bottom) {
-        titlebar.css('opacity', '1');
-        autoHideTitlebarInterval = setInterval(function () {
+        if (e.clientY <= titlebar[0].getBoundingClientRect().bottom) {
+            titlebar.css('opacity', '1');
+            autoHideTitlebarInterval = setInterval(function () {
+                if (!locked) {
+                    titlebar.css('opacity', '0');
+                }
+            }, 10000);
+        } else {
             titlebar.css('opacity', '0');
-        }, 10000);
-    } else {
-        titlebar.css('opacity', '0');
+        }
     }
 });
 
-minimizeButton.click(function () {
+/*
+* Button functionality
+*/
+lockButton.click(() => {
+    locked = !locked;
+
+    if (locked) {
+        lockButton.css('color', '#f8bd34');
+        titlebar.css('opacity', '1');
+    } else {
+        lockButton.css('color', '#fff');
+    }
+});
+
+minimizeButton.click(() => {
     currentWindow.minimize();
 });
 
-closeButton.click(function () {
+closeButton.click(() => {
     currentWindow.close();
 });
