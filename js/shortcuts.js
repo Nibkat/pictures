@@ -6,6 +6,14 @@ Mousetrap.bind(['mod+o'], function (e) {
     showOpenImageDialog();
 });
 
+Mousetrap.bind(['mod+shift+o'], function (e) {
+    openFolder();
+});
+
+Mousetrap.bind(['mod+d'], function (e) {
+    deleteImage();
+});
+
 /*Mousetrap.bind('ctrl+c', function(e) {
     copyImage();
 });*/

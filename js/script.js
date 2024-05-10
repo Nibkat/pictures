@@ -66,7 +66,7 @@ function deleteImage() {
     const options = {
         type: 'info',
         title: 'Delete image',
-        message: "Are you sure you want to delete this image?",
+        message: "Are you sure you want to permanently delete this image?",
         buttons: ['Yes', 'No']
     }
     dialog.showMessageBox(options, function (index) {
