@@ -41,6 +41,16 @@ function pastePicture() {
                 pastedImageCount++;
             }
         });
+    } else if (availableFormats.includes('text/plain')) {
+        let clipboardText = clipboard.readText();
+
+        testImage(clipboardText, (url, result) => {
+            if (result === 'success') {
+                setPicture(url);
+            } else {
+                dialog.showErrorBox('Invalid image', 'Timed out or the url is not a valid image');
+            }
+        });
     }
 }
 
