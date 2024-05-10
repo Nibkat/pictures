@@ -17,6 +17,17 @@ const dockMenu = Menu.buildFromTemplate([{
   }
 }]);
 
+app.setUserTasks([
+  {
+    program: process.execPath,
+    arguments: '--new-window',
+    iconPath: process.execPath,
+    iconIndex: 0,
+    title: 'New Window',
+    description: 'Opens a new window'
+  }
+]);
+
 let windows = [];
 
 function createWindow() {
