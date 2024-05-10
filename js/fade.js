@@ -1,5 +1,3 @@
-// TODO: add fadeToggle
-
 function fadeIn(elem, ms) {
     if (!elem)
         return;
