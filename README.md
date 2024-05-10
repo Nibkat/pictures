@@ -28,4 +28,4 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 ![alt text](https://i.imgur.com/7rKdbSV.png "Pictures Screenshot")
 
 ## License
-[MIT](LICENSE.md)
+[MIT](LICENSE)
