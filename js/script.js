@@ -55,9 +55,10 @@ function setWindowSize() {
     if (picture.height() >= screenSize.height) {
         picture.height(screenSize.height - 128);
     }
+
     if (picture.width() >= screenSize.width) {
         picture.width(screenSize.width - 128);
-        picture.removeAttr('height');
+        picture.height('');
     }
 
     currentWindow.setSize(Math.round(picture.width()), Math.round(picture.height()));
