@@ -7,20 +7,14 @@ var openImageButton = $('#openImageButton');
 var openUrlButton = $('#openUrlButton');
 var deleteButton = $('#deleteButton');
 
-openImageButton.click(function (event) {
-    ipcRenderer.send('open-file-dialog');
-});
+openImageButton.click(showOpenImageDialog);
 
 openUrlButton.click(function () {
     urlTextbox.fadeToggle('fast');
 });
 
 deleteButton.click(function () {
-    ipcRenderer.send('delete-confirmation');
-});
-
-ipcRenderer.on('selected-image', function (event, path) {
-    picture.attr('src', `${path}`);
+    deleteImage();
 });
 
 picture.on('load', function () {
@@ -28,9 +22,14 @@ picture.on('load', function () {
     centerWindow();
 });
 
-picture.dblclick(function () {
-    ipcRenderer.send('open-file-dialog');
+picture.dblclick(showOpenImageDialog);
+
+ipcRenderer.on('save-image', function () {
+    console.log('save');
 });
+ipcRenderer.on('open-image', showOpenImageDialog);
+ipcRenderer.on('open-folder', openFolder);
+ipcRenderer.on('delete-image', deleteImage);
 
 urlTextbox.keypress(function (e) {
     if (e.keyCode == 13) {
@@ -40,8 +39,51 @@ urlTextbox.keypress(function (e) {
                 urlTextbox.fadeOut('fast');
                 urlTextbox.val('');
             } else {
-                alert(url + ' is not a valid image');
+                dialog.showErrorBox('Invalid image', 'URL is not a valid image');
             }
         });
     }
 });
+
+function showOpenImageDialog() {
+    dialog.showOpenDialog({
+        filters: [{
+            name: 'Image',
+            extensions: ['jpeg', 'jpg', 'png', 'gif', 'svg', 'bmp', 'webp', 'tiff', 'ico']
+        }]
+    }, function (files) {
+        if (files) {
+            picture.attr('src', files[0]);
+        }
+    });
+}
+
+function openFolder() {
+    shell.showItemInFolder(picture.attr('src'));
+}
+
+function deleteImage() {
+    const options = {
+        type: 'info',
+        title: 'Delete image',
+        message: "Are you sure you want to delete this image?",
+        buttons: ['Yes', 'No']
+    }
+    dialog.showMessageBox(options, function (index) {
+        if (index === 0) {
+            if (fs.existsSync(picture.attr('src'))) {
+                fs.unlink(picture.attr('src'), (err) => {
+                    if (err) {
+                        alert("An error ocurred updating the file" + err.message);
+                        console.log(err);
+                        return;
+                    }
+
+                    picture.attr('src', 'images/placeholder.png');
+                });
+            } else {
+                alert("This file doesn't exist or isn't local, cannot delete");
+            }
+        }
+    });
+}
