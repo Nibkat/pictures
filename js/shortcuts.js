@@ -1,21 +1,21 @@
-Mousetrap.bind(['mod+s'], (e) => {
+Mousetrap.bind(['mod+s'], () => {
     console.log('save');
 });
 
-Mousetrap.bind(['mod+o'], (e) => {
+Mousetrap.bind(['mod+o'], () => {
     showOpenImageDialog();
 });
 
-Mousetrap.bind(['mod+shift+o'], (e) => {
+Mousetrap.bind(['mod+shift+o'], () => {
     openFolder();
 });
 
-/*Mousetrap.bind('ctrl+c', (e) => {
-    copyImage();
-});*/
+Mousetrap.bind(['mod+n'], () => {
+    ipcRenderer.send('new-window');
+});
 
 if (os.platform() != 'darwin') {
-    Mousetrap.bind(['mod+q'], (e) => {
+    Mousetrap.bind(['mod+q'], () => {
         currentWindow.close();
     });
 }
