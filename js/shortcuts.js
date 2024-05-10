@@ -7,7 +7,7 @@ Mousetrap.bind(['mod+o'], () => {
 });
 
 Mousetrap.bind(['mod+shift+o'], () => {
-    openFolder();
+    currentPicture.revealInFolder();
 });
 
 Mousetrap.bind(['mod+n'], () => {

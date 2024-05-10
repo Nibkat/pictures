@@ -2,20 +2,16 @@
  * Variables
  */
 const picture = document.getElementById('picture');
-var picturePath;
+var currentPicture = new Picture();
 
 const urlTextbox = document.getElementById('urlTextbox');
 urlTextbox.style.display = 'none';
 
 // Image load event
 picture.addEventListener('load', () => {
-    let imageLoadEvent = new CustomEvent('imageChange', {
-        'detail': {
-            'isLocal': fs.existsSync(picturePath)
-        }
-    });
-    
-    document.dispatchEvent(imageLoadEvent);
+    let pictureLoadEvent = new CustomEvent('pictureChange');
+
+    document.dispatchEvent(pictureLoadEvent);
 });
 
 // Double clicking
@@ -26,7 +22,7 @@ urlTextbox.addEventListener('keypress', (e) => {
         testImage(urlTextbox.value, (url, result) => {
             if (result === 'success') {
                 setPicture(url);
-                
+
                 fadeOut(urlTextbox, 250);
                 urlTextbox.value = '';
             } else {
@@ -38,7 +34,7 @@ urlTextbox.addEventListener('keypress', (e) => {
 
 /*
  * Showing the image dialog
-*/
+ */
 function showOpenImageDialog() {
     dialog.showOpenDialog({
         filters: [{
@@ -52,17 +48,13 @@ function showOpenImageDialog() {
     });
 }
 
-/*
- * Open the folder containing the current image
-*/
-function openFolder() {
-    shell.showItemInFolder(picturePath);
-}
+setPicture('./assets/images/placeholder.png');
 
 function setPicture(filePath) {
-    picture.src = filePath;
-    picturePath = filePath;
+    currentPicture = new Picture(filePath);
 
-    let title = path.basename(filePath);
+    picture.src = currentPicture.path;
+
+    let title = path.basename(currentPicture.path);
     currentWindow.setTitle(title);
 }

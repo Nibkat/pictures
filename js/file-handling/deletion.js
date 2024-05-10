@@ -1,23 +1,21 @@
 const deleteButton = document.getElementById('deleteButton');
+const deletedPicture = './assets/images/deleted.png';
 
 deleteButton.addEventListener('click', () => {
     moveImageToTrash();
 });
 
-document.addEventListener('imageChange', (e) => {
-    if (e.detail.isLocal) {
+document.addEventListener('pictureChange', (e) => {
+    if (currentPicture.isLocal() && !currentPicture.isAsset()) {
         enableDeleting();
     } else {
         disableDeleting();
     }
 });
 
-// Initially disable deleting
-disableDeleting();
-
 /*
-* Enabling and disabling deleting
-*/
+ * Enabling and disabling deleting
+ */
 function disableDeleting() {
     deleteButton.style.display = 'none';
 
@@ -28,6 +26,9 @@ function disableDeleting() {
         Mousetrap.unbind(['mod+backspace']);
         Mousetrap.unbind(['mod+shift+backspace']);
     }
+
+    pictureContextMenuTemplate[9].enabled = false;
+    pictureContextMenu = Menu.buildFromTemplate(pictureContextMenuTemplate);
 }
 
 function enableDeleting() {
@@ -50,6 +51,9 @@ function enableDeleting() {
             permaDeleteImage();
         });
     }
+
+    pictureContextMenuTemplate[9].enabled = true;
+    pictureContextMenu = Menu.buildFromTemplate(pictureContextMenuTemplate);
 }
 
 /*
@@ -60,18 +64,14 @@ function moveImageToTrash() {
 
     let options = {
         type: 'info',
-        message: 'Are you sure you want to delete \'' + path.basename(picturePath) + '\'?',
+        message: 'Are you sure you want to delete \'' + path.basename(currentPicture.path) + '\'?',
         detail: 'You can restore from the ' + deletionLocation + '.',
-        buttons: ['Move to ' +  deletionLocation, 'Cancel']
+        buttons: ['Move to ' + deletionLocation, 'Cancel']
     }
     dialog.showMessageBox(options, (index) => {
         if (index === 0) {
-            if (fs.existsSync(picturePath)) {
-                shell.moveItemToTrash(picturePath);
-                setPicture('assets/images/deleted.png');
-
-            } else {
-                alert("This file doesn't exist or isn't local, cannot delete");
+            if (currentPicture.moveToTrash()) {
+                setPicture(deletedPicture);
             }
         }
     });
@@ -80,25 +80,14 @@ function moveImageToTrash() {
 function permaDeleteImage() {
     let options = {
         type: 'info',
-        message: 'Are you sure you want to permanently delete \'' + path.basename(picturePath) + '\'?',
+        message: 'Are you sure you want to permanently delete \'' + path.basename(currentPicture.path) + '\'?',
         detail: 'You won\'t be able to restore this file',
         buttons: ['Permanently delete', 'Cancel']
     }
     dialog.showMessageBox(options, (index) => {
         if (index === 0) {
-            if (fs.existsSync(picturePath)) {
-                fs.unlink(picturePath, (err) => {
-                    if (err) {
-                        alert("An error ocurred updating the file" + err.message);
-                        console.log(err);
-                        return;
-                    }
-
-                    setPicture('assets/images/deleted.png');
-                });
-
-            } else {
-                alert("This file doesn't exist or isn't local, cannot delete");
+            if (currentPicture.permaDelete()) {
+                setPicture(deletedPicture);
             }
         }
     });

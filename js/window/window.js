@@ -19,15 +19,15 @@ function setWindowSize() {
 }
 
 /*
-* Initial resize & center
-*/
+ * Initial resize & center
+ */
 setWindowSize();
 centerWindow();
 
 /*
-* Image change event listener
-*/
-document.addEventListener('imageChange', (e) => {
+ * Image change event listener
+ */
+document.addEventListener('pictureChange', (e) => {
     setWindowSize();
     centerWindow();
 });
