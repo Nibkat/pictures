@@ -2,7 +2,7 @@
  * Variables
  */
 const picture = document.getElementById('picture');
-var currentPicture = new Picture();
+var currentPicture;
 
 const urlTextbox = document.getElementById('urlTextbox');
 urlTextbox.style.display = 'none';
