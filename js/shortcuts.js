@@ -10,7 +10,7 @@ Mousetrap.bind(['mod+shift+o'], function (e) {
     openFolder();
 });
 
-Mousetrap.bind(['mod+d'], function (e) {
+Mousetrap.bind(['del'], function (e) {
     deleteImage();
 });
 
