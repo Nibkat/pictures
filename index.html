@@ -6,28 +6,41 @@
   <title>Pictures</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-
-<body>
-  <img class="noselect" src="images/placeholder.png" id="picture" alt="picture" draggable="false">
-
-  <div class="noselect button-container" id="titlebar">
-    <div style="float:left"><i id="select-image" class="icon-button material-icons">folder_open</i></div>
-    
-    <div class="titlebar-button" id="minimizeButton" style="background-color: #F8BD34;"></div><div class="titlebar-button" id="closeButton" style="background-color: #EA5B53;"></div>
-  </div>
-
   <script>
     if (typeof module === 'object') {
       window.module = module;
       module = undefined;
     }
   </script>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <img class="noselect" src="images/placeholder.png" id="picture" alt="picture">
+
+  <div class="noselect button-container" id="titlebar">
+    <div style="float:left">
+      <i id="select-image" class="icon-button material-icons">folder</i>
+    </div>
+
+    <div class="titlebar-button" id="minimizeButton" style="background-color: #F8BD34;"></div><div class="titlebar-button" style="background-color: #D0D0D0;"></div><div class="titlebar-button" id="closeButton" style="background-color: #EA5B53;"></div>
+  </div>
 
   <script>
+    const remote = require('electron').remote;
+    const ipc = require('electron').ipcRenderer;
+    const nativeImage = require('electron').nativeImage;
+    const clipboard = require('electron').clipboard;
+
+    const electronScreen = require('electron').screen;
+    const screenSize = electronScreen.getPrimaryDisplay().size;
+  </script>
+
+  <script>
+    require('./js/clipboard.js');
+    require('./js/dropzone.js');
     require('./js/titlebar.js');
+    require('./js/shortcuts.js');
     require('./js/script.js');
     require('./renderer.js');
   </script>
