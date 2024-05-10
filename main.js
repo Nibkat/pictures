@@ -35,13 +35,7 @@ function createWindow() {
 
 function registerShortcuts() {
   globalShortcut.register('CommandOrControl+O', function (event) {
-    dialog.showOpenDialog({
-      properties: ['openFile']
-    }, function (files) {
-      if (files) {
-        mainWindow.send('selected-image', files);
-      }
-    });
+    openImageDialog();
   });
 
   globalShortcut.register('CommandOrControl+Q', function () {
@@ -49,8 +43,20 @@ function registerShortcuts() {
   });
 }
 
-function openImage() {
+function openImageDialog() {
+  dialog.showOpenDialog({
+    filters: [
 
+      {
+        extensions: ['jpg', 'png', 'gif', 'svg', 'bmp']
+      }
+
+    ]
+  }, function (files) {
+    if (files) {
+      mainWindow.send('selected-image', files[0]);
+    }
+  });
 }
 
 app.on('ready', function () {
@@ -72,18 +78,5 @@ app.on('activate', function () {
 });
 
 ipc.on('open-file-dialog', function (event) {
-  dialog.showOpenDialog({
-    filters: [
-
-      {
-        extensions: ['jpg', 'png', 'gif', 'svg', 'bmp']
-      }
-
-    ]
-  }, function (files) {
-    if (files) {
-      console.log(event.sender);
-      event.sender.send('selected-image', files[0]);
-    }
-  });
+  openImageDialog();
 });
