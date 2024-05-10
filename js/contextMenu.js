@@ -1,7 +1,7 @@
-$(picture).contextmenu(() => {
+picture.addEventListener('contextmenu', () => {
     ipcRenderer.send('show-context-menu');
 });
 
-$('#urlTextbox').contextmenu(() => {
+document.getElementById('urlTextbox').addEventListener('contextmenu', () => {
     ipcRenderer.send('show-edit-context-menu');
 });

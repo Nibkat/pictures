@@ -1,15 +1,15 @@
-const titlebar = $('#titlebar');
+const titlebar = document.getElementById('titlebar');
 
 /*
-* Button variables
+* Buttons variables
 */
-const lockButton = $('#lockButton');
-const openImageButton = $('#openImageButton');
-const openUrlButton = $('#openUrlButton');
-const deleteButton = $('#deleteButton');
+const lockButton = document.getElementById('lockButton');
+const openImageButton = document.getElementById('openImageButton');
+const openUrlButton = document.getElementById('openUrlButton');
+const deleteButton = document.getElementById('deleteButton');
 
-const minimizeButton = $('#minimizeButton');
-const closeButton = $('#closeButton');
+const minimizeButton = document.getElementById('minimizeButton');
+const closeButton = document.getElementById('closeButton');
 
 /*
 * Other variables
@@ -17,22 +17,24 @@ const closeButton = $('#closeButton');
 var locked = false;
 var autoHideTitlebarInterval;
 
+var urlTextboxShowing = false;
+
 /*
 * Showing & hiding the titlebar
 */
-$('*').mousemove((e) => {
+document.addEventListener('mousemove', (e) => {
     if (!locked) {
         clearInterval(autoHideTitlebarInterval);
 
-        if (e.clientY <= titlebar[0].getBoundingClientRect().bottom + 5) {
-            titlebar.css('opacity', '1');
+        if (e.clientY <= titlebar.getBoundingClientRect().bottom + 5) {
+            titlebar.style.opacity = 1;
             autoHideTitlebarInterval = setInterval(() => {
                 if (!locked) {
-                    titlebar.css('opacity', '0');
+                    titlebar.style.opacity = 0;
                 }
             }, 10000);
         } else {
-            titlebar.css('opacity', '0');
+            titlebar.style.opacity = 0;
         }
     }
 });
@@ -40,31 +42,37 @@ $('*').mousemove((e) => {
 /*
 * Button functionality
 */
-lockButton.click(() => {
+lockButton.addEventListener('click', () => {
     locked = !locked;
 
     if (locked) {
-        lockButton.css('color', '#f8bd34');
-        titlebar.css('opacity', '1');
+        lockButton.style.color = '#f8bd34';
+        titlebar.style.opacity = 1;
     } else {
-        lockButton.css('color', '#fff');
+        lockButton.style.color = '#fff';
     }
 });
 
-openImageButton.click(showOpenImageDialog);
+openImageButton.addEventListener('click', showOpenImageDialog);
 
-openUrlButton.click(() => {
-    urlTextbox.fadeToggle('fast');
+openUrlButton.addEventListener('click', () => {
+    if (urlTextboxShowing) {
+        fadeOut(urlTextbox, 250);
+    } else {
+        fadeIn(urlTextbox, 250);
+    }
+
+    urlTextboxShowing = !urlTextboxShowing;
 });
 
-deleteButton.click(() => {
+deleteButton.addEventListener('click', () => {
     deleteImage();
 });
 
-minimizeButton.click(() => {
+minimizeButton.addEventListener('click', () => {
     currentWindow.minimize();
 });
 
-closeButton.click(() => {
+closeButton.addEventListener('click', () => {
     currentWindow.close();
 });
