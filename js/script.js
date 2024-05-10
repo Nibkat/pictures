@@ -2,6 +2,7 @@
  * Variables
  */
 const picture = document.getElementById('picture');
+var picturePath;
 
 const urlTextbox = document.getElementById('urlTextbox');
 urlTextbox.style.display = 'none';
@@ -10,7 +11,7 @@ urlTextbox.style.display = 'none';
 picture.addEventListener('load', () => {
     let imageLoadEvent = new CustomEvent('imageChange', {
         'detail': {
-            'isLocal': fs.existsSync(unescape(picture.src.replace('file:///', '')))
+            'isLocal': fs.existsSync(picturePath)
         }
     });
     
@@ -31,7 +32,8 @@ urlTextbox.addEventListener('keypress', (e) => {
     if (e.keyCode == 13) {
         testImage(urlTextbox.value, (url, result) => {
             if (result == 'success') {
-                picture.src = url;
+                setPicture(url);
+                
                 fadeOut(urlTextbox, 250);
                 urlTextbox.value = '';
             } else {
@@ -52,7 +54,7 @@ function showOpenImageDialog() {
         }]
     }, (files) => {
         if (files) {
-            picture.src = files[0];
+            setPicture(files[0]);
         }
     });
 }
@@ -61,5 +63,10 @@ function showOpenImageDialog() {
  * Open the folder containing the current image
  */
 function openFolder() {
-    shell.showItemInFolder(picture.src);
+    shell.showItemInFolder(picturePath);
+}
+
+function setPicture(path) {
+    picture.src = path;
+    picturePath = path;
 }
