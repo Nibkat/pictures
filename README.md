@@ -21,7 +21,9 @@ npm start
 
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
-## Screenshot
+## Screenshots
+
+![alt text](https://i.imgur.com/u46D8m1.gif "Pictures Demo")
 
 ![alt text](https://i.imgur.com/7rKdbSV.png "Pictures Screenshot")
 
