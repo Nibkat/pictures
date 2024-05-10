@@ -1,9 +1,12 @@
 const titlebar = $('#titlebar');
 
 /*
-* Buttons
+* Button variables
 */
 const lockButton = $('#lockButton');
+const openImageButton = $('#openImageButton');
+const openUrlButton = $('#openUrlButton');
+const deleteButton = $('#deleteButton');
 
 const minimizeButton = $('#minimizeButton');
 const closeButton = $('#closeButton');
@@ -46,6 +49,16 @@ lockButton.click(() => {
     } else {
         lockButton.css('color', '#fff');
     }
+});
+
+openImageButton.click(showOpenImageDialog);
+
+openUrlButton.click(() => {
+    urlTextbox.fadeToggle('fast');
+});
+
+deleteButton.click(() => {
+    deleteImage();
 });
 
 minimizeButton.click(() => {

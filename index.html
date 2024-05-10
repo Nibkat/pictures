@@ -21,7 +21,7 @@
 
   <div id="titlebar" class="no-select">
     <div style="float: left; padding: 4px">
-        <i id="lockButton" class="icon-button material-icons" title="Lock titlebar">lock</i>
+      <i id="lockButton" class="icon-button material-icons" title="Lock titlebar">lock</i>
       <i id="openImageButton" class="icon-button material-icons" title="Open file">folder</i>
       <i id="openUrlButton" class="icon-button material-icons" title="Open url">attach_file</i>
       <i id="deleteButton" class="icon-button material-icons" title="Delete image">delete</i>
@@ -46,7 +46,7 @@
     const path = require('path');
 
     const remote = electron.remote;
-    
+
     const ipcRenderer = electron.ipcRenderer;
     const dialog = remote.dialog;
     const shell = electron.shell;
@@ -56,13 +56,13 @@
     const screenSize = electronScreen.getPrimaryDisplay().size;
   </script>
 
+  <script src="./js/script.js"></script>
   <script src="./js/contextMenu.js"></script>
   <script src="./js/dropzone.js"></script>
   <script src="./js/titlebar.js"></script>
   <script src="./js/window.js"></script>
   <script src="./js/shortcuts.js"></script>
   <script src="./js/utility.js"></script>
-  <script src="./js/script.js"></script>
 
   <script>
     if (window.module) module = window.module;
