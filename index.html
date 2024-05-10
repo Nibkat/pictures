@@ -15,15 +15,23 @@
     <i id="select-directory" class="icon-button material-icons">insert_drive_file</i><i class="icon-button material-icons" id="minimizeButton" style="position: relative; top: 0.25em;">remove</i><i class="icon-button material-icons" id="closeButton">close</i>
   </div>
 
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
     const remote = require('electron').remote;
 
-    var picture = document.getElementById("picture");
+    var picture = document.getElementById('picture');
 
     remote.getCurrentWindow().setSize(picture.width, picture.height);
-    remote.getCurrentWindow().setPosition(Math.round(screen.width / 2 - picture.width / 2), Math.round(screen.height / 2 - picture.height / 2));
+    remote.getCurrentWindow().setPosition(Math.round(screen.width / 2 - picture.width / 2), Math.round(screen.height /
+      2 - picture.height / 2));
 
-    document.getElementById('minimizeButton').addEventListener('click', function () {
+    /*document.getElementById('minimizeButton').addEventListener('click', function () {
+      remote.getCurrentWindow().minimize();
+    });*/
+
+    $('#minimizeButton').click(function() {
       remote.getCurrentWindow().minimize();
     });
 
@@ -41,6 +49,9 @@
 
     ipc.on('selected-directory', function (event, path) {
       picture.src = `${path}`;
+    });
+
+    $('#picture').on('load', function() {
       remote.getCurrentWindow().setSize(picture.width, picture.height);
       remote.getCurrentWindow().setPosition(Math.round(screen.width / 2 - picture.width / 2), Math.round(screen.height / 2 - picture.height / 2));
     });
@@ -48,6 +59,10 @@
 
   <script>
     require('./renderer.js');
+  </script>
+
+  <script>
+    if (window.module) module = window.module;
   </script>
 </body>
 
