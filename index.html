@@ -17,31 +17,38 @@
 </head>
 
 <body>
-<img class="noselect" src="images/placeholder.png" id="picture" alt="picture">
+  <img class="noselect" src="images/placeholder.png" id="picture" alt="picture">
 
   <div class="noselect button-container" id="titlebar">
-    <div style="float:left; padding: 4px">
-      <i id="select-image" class="icon-button material-icons">folder</i><i id="open-url" class="icon-button material-icons">attach_file</i><i class="icon-button material-icons">share</i>
+    <div style="float: left; padding: 4px">
+      <i id="select-image" class="icon-button material-icons">folder</i>
+      <i id="open-url" class="icon-button material-icons">attach_file</i>
+      <i id="share-button" class="icon-button material-icons">share</i>
     </div>
 
-    <div>
-      <div class="titlebar-button" id="minimizeButton" style="background-color: #F8BD34;"></div><div class="titlebar-button" style="background-color: #D0D0D0;"></div><div class="titlebar-button" id="closeButton" style="background-color: #EA5B53;"></div>
+    <div style="float: right; margin-right: 8px;">
+      <div class="titlebar-button" id="minimizeButton" style="background-color: #F8BD34;"></div>
+      <div class="titlebar-button" id="maximizeButton" style="background-color: #D0D0D0;"></div>
+      <div class="titlebar-button" id="closeButton" style="background-color: #EA5B53;"></div>
     </div>
   </div>
 
   <div style="position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);">
-      <div>
-        <input style="border: none; background-color: rgba(35, 35, 35, 0.7); color: white; width: 100vw; height: 2em; text-align: center" id="urlTextBox" type="text" placeholder="http://website.com/image.jpg">
-      </div>
+    <div>
+      <input id="urlTextbox" type="text" placeholder="http://website.com/image.jpg">
+    </div>
   </div>
 
   <script>
-    const remote = require('electron').remote;
-    const ipc = require('electron').ipcRenderer;
-    const nativeImage = require('electron').nativeImage;
-    const clipboard = require('electron').clipboard;
+    const electron = require('electron');
 
-    const electronScreen = require('electron').screen;
+    const remote = electron.remote;
+    const currentWindow = remote.getCurrentWindow();
+    const ipc = electron.ipcRenderer;
+    const nativeImage = electron.nativeImage;
+    const clipboard = electron.clipboard;
+
+    const electronScreen = electron.screen;
     const screenSize = electronScreen.getPrimaryDisplay().size;
   </script>
 

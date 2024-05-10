@@ -1,7 +1,7 @@
 var picture = $('#picture');
 
-var urlTextBox = $('#urlTextBox');
-urlTextBox.hide();
+var urlTextbox = $('#urlTextbox');
+urlTextbox.hide();
 
 var selectImage = $('#select-image');
 var openUrl = $('#open-url');
@@ -14,7 +14,7 @@ selectImage.click(function (event) {
 });
 
 openUrl.click(function () {
-    urlTextBox.fadeToggle('fast');
+    urlTextbox.fadeToggle('fast');
 });
 
 ipc.on('selected-image', function (event, path) {
@@ -30,13 +30,13 @@ picture.dblclick(function () {
     ipc.send('open-file-dialog');
 });
 
-urlTextBox.keypress(function (e) {
+urlTextbox.keypress(function (e) {
     if (e.keyCode == 13) {
-        testImage(urlTextBox.val(), function (url, result) {
+        testImage(urlTextbox.val(), function (url, result) {
             if (result == 'success') {
                 picture.attr('src', url);
-                urlTextBox.fadeOut('fast');
-                urlTextBox.val('');
+                urlTextbox.fadeOut('fast');
+                urlTextbox.val('');
             } else {
                 alert(url + ' is not a valid image');
             }
@@ -45,7 +45,7 @@ urlTextBox.keypress(function (e) {
 });
 
 function centerWindow() {
-    remote.getCurrentWindow().setPosition(Math.round(screenSize.width / 2 - picture.width() / 2), Math.round(screenSize.height / 2 - picture.height() / 2));
+    currentWindow.setPosition(Math.round(screenSize.width / 2 - picture.width() / 2), Math.round(screenSize.height / 2 - picture.height() / 2));
 }
 
 function setWindowSize() {
@@ -60,7 +60,7 @@ function setWindowSize() {
         picture.removeAttr('height');
     }
 
-    remote.getCurrentWindow().setSize(Math.round(picture.width()), Math.round(picture.height()));
+    currentWindow.setSize(Math.round(picture.width()), Math.round(picture.height()));
 }
 
 function testImage(url, callback, timeout) {

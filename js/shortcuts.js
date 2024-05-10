@@ -7,5 +7,5 @@ Mousetrap.bind(['mod+o'], function (e) {
 });*/
 
 Mousetrap.bind(['mod+q'], function (e) {
-    remote.getCurrentWindow().close();
+    currentWindow.close();
 });
