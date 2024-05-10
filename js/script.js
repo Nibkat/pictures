@@ -21,13 +21,6 @@ picture.addEventListener('load', () => {
 // Double clicking
 picture.addEventListener('dblclick', showOpenImageDialog);
 
-ipcRenderer.on('save-image', () => {
-    console.log('save');
-});
-
-ipcRenderer.on('open-image', showOpenImageDialog);
-ipcRenderer.on('reveal', openFolder);
-
 urlTextbox.addEventListener('keypress', (e) => {
     if (e.keyCode == 13) {
         testImage(urlTextbox.value, (url, result) => {

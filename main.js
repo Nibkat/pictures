@@ -4,12 +4,8 @@ const {
   app,
   BrowserWindow,
   ipcMain,
-  dialog,
-  Menu,
-  MenuItem
+  Menu
 } = electron;
-
-const os = require('os');
 
 const path = require('path');
 const url = require('url');
@@ -21,16 +17,13 @@ const dockMenu = Menu.buildFromTemplate([{
   }
 }]);
 
-let mainWindow;
+let windows = [];
 
 function createWindow() {
-  // Add custom dock menu
-  if (os.platform() === 'darwin') {
-    app.dock.setMenu(dockMenu);
-  }
+  let window;
 
   // Create window
-  mainWindow = new BrowserWindow({
+  window = new BrowserWindow({
     width: 512,
     height: 512,
     icon: 'images/picture.png',
@@ -39,19 +32,31 @@ function createWindow() {
   });
 
   // Load content
-  mainWindow.loadURL(url.format({
+  window.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
   }));
 
   // Remove when closed
-  mainWindow.on('closed', () => {
-    mainWindow = null;
+  window.on('closed', () => {
+    window = null;
+    windows.pop(window);
   });
+
+  window.on('ready-to-show', () => {
+    createContextMenu(window);
+  });
+
+  windows.push(window);
 }
 
 app.on('ready', () => {
+  // Add custom dock menu
+  if (process.platform === 'darwin') {
+    app.dock.setMenu(dockMenu);
+  }
+
   createWindow();
 });
 
@@ -62,72 +67,9 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-  if (mainWindow === null) {
+  if (windows.length === 0) {
     createWindow();
   }
-});
-
-/*
-* Image context menu
-*/
-const imageContextMenuTemplate = [{
-  label: 'Save as',
-  accelerator: 'CommandOrControl+S',
-  click: () => {
-    mainWindow.send('save-image');
-  }
-}, {
-  type: 'separator'
-}, {
-  label: 'Open',
-  accelerator: 'CommandOrControl+O',
-  click: () => {
-    mainWindow.send('open-image');
-  }
-}, {
-  label: 'Reveal in ' + (os.platform() === 'darwin' ? 'Finder' : 'Explorer'),
-  accelerator: 'CommandOrControl+Shift+O',
-  click: () => {
-    mainWindow.send('reveal');
-  }
-}, {
-  type: 'separator'
-}, {
-  label: 'Delete',
-  submenu: [{
-    label: 'Delete',
-    accelerator: os.platform() === 'darwin' ? 'CommandOrControl+Backspace' : 'Delete',
-    click: () => {
-      mainWindow.send('delete')
-    }
-  }, {
-    label: 'Delete permanently',
-    accelerator: os.platform() === 'darwin' ? 'CommandOrControl+Shift+Backspace' : 'CommandOrControl+Delete',
-    click: () => {
-      mainWindow.send('perma-delete')
-    }
-  }]
-}, {
-  type: 'separator'
-}, {
-  label: 'New window',
-  accelerator: 'CommandOrControl+N',
-  click: () => {
-    createWindow();
-  }
-}, {
-  role: 'quit',
-  accelerator: 'CommandOrControl+Q'
-}];
-
-const menu = Menu.buildFromTemplate(imageContextMenuTemplate);
-
-/*
- * Context menu ipc
- */
-ipcMain.on('show-context-menu', (e) => {
-  const win = BrowserWindow.fromWebContents(e.sender);
-  menu.popup(win);
 });
 
 /*
