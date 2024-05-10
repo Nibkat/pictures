@@ -17,8 +17,6 @@ const closeButton = document.getElementById('closeButton');
 var locked = false;
 var autoHideTitlebarInterval;
 
-var urlTextboxShowing = false;
-
 /*
 * Showing & hiding the titlebar
 */
@@ -56,13 +54,7 @@ lockButton.addEventListener('click', () => {
 openImageButton.addEventListener('click', showOpenImageDialog);
 
 openUrlButton.addEventListener('click', () => {
-    if (urlTextboxShowing) {
-        fadeOut(urlTextbox, 250);
-    } else {
-        fadeIn(urlTextbox, 250);
-    }
-
-    urlTextboxShowing = !urlTextboxShowing;
+    fadeToggle(urlTextbox, 250);
 });
 
 deleteButton.addEventListener('click', () => {

@@ -50,3 +50,16 @@ function fadeOut(elem, ms) {
         elem.style.visibility = 'hidden';
     }
 }
+
+function fadeToggle(elem, ms) {
+    if (!elem)
+        return;
+
+    if (ms) {
+        if (elem.style.visibility === 'hidden' || elem.style.display === 'none') {
+            fadeIn(elem, ms);
+        } else {
+            fadeOut(elem, ms);
+        }
+    }
+}
