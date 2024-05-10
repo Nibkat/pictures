@@ -50,10 +50,14 @@ app.on('activate', function () {
   }
 });
 
-// Context menu
+/*
+* Context menu
+*/
 const menu = new Menu();
 
-// Context menu items
+/*
+* Context menu items
+*/
 const saveImage = new MenuItem({
   label: 'Save as',
   accelerator: 'CommandOrControl+S'
@@ -91,7 +95,9 @@ const quitMenuItem = new MenuItem({
   accelerator: 'CommandOrControl+Q'
 });
 
-// Append menu items
+/*
+* Append menu items
+*/
 menu.append(saveImage);
 menu.append(new MenuItem({
   type: 'separator'
@@ -107,13 +113,17 @@ menu.append(new MenuItem({
 }));
 menu.append(quitMenuItem);
 
-// Context menu ipc
+/*
+* Context menu ipc
+*/
 ipcMain.on('show-context-menu', function (event) {
   const win = BrowserWindow.fromWebContents(event.sender);
   menu.popup(win);
 });
 
-// Edit context menu
+/*
+* Edit context menu
+*/
 const editMenu = new Menu();
 
 editMenu.append(new MenuItem({

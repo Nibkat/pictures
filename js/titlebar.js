@@ -1,8 +1,8 @@
-var titlebar = $('#titlebar');
+const titlebar = $('#titlebar');
 
 // Buttons
-var minimizeButton = $('#minimizeButton');
-var closeButton = $('#closeButton');
+const minimizeButton = $('#minimizeButton');
+const closeButton = $('#closeButton');
 
 var autoHideTitlebarInterval;
 
