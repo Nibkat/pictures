@@ -1,4 +1,5 @@
 const electron = require('electron');
+const fs = require('fs');
 
 const {
   app,
@@ -82,6 +83,22 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+app.on('before-quit', () => {
+  let tempDir = __dirname + '/temp';
+
+  if (fs.existsSync(tempDir)) {
+    fs.readdirSync(tempDir).forEach(function (file, index) {
+      let curPath = tempDir + "/" + file;
+      if (fs.lstatSync(curPath).isDirectory()) { // recurse
+        deleteFolderRecursive(curPath);
+      } else { // delete file
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(tempDir);
+  }
+})
 
 /*
  * Creating new windows ipc
