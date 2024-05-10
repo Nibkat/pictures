@@ -1,5 +1,3 @@
-const Menu = remote.Menu;
-
 const pictureContextMenuTemplate = [{
     label: 'Save As',
     accelerator: 'CommandOrControl+S',
@@ -73,7 +71,7 @@ const pictureContextMenuTemplate = [{
     }
 }, {
     role: 'toggledevtools',
-    accelerator: 'CommandOrControl+Shift+I'
+    accelerator: (os.platform() === 'darwin' ? 'Command+Option+I' : 'Control+Shift+I')
 }, {
     type: 'separator'
 }, {
