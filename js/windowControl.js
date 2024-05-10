@@ -12,6 +12,7 @@ const closeButtonWin = document.getElementById('closeButtonWin');
 const windowControlMac = document.getElementById('windowControlMac');
 
 const minimizeButtonMac = document.getElementById('minimizeButtonMac');
+const maximizeButtonMac = document.getElementById('maximizeButtonMac');
 const closeButtonMac = document.getElementById('closeButtonMac');
 
 /*
@@ -22,6 +23,18 @@ if (os.platform() === 'darwin') {
 
     windowControlWin.style.display = 'none';
     windowControlMac.style.display = 'inline';
+
+    currentWindow.on('blur', () => {
+        minimizeButtonMac.style.background = '#e0e0e0';
+        //maximizeButtonMac.style.background = '#e0e0e0';
+        closeButtonMac.style.background = '#e0e0e0';
+    });
+
+    currentWindow.on('focus', () => {
+        minimizeButtonMac.style.background = '#f8bd34';
+        //maximizeButtonMac.style.background = '#43cb44';
+        closeButtonMac.style.background = '#ea5b53';
+    });
 } else {
     imageControl.style.cssFloat = 'left';
 

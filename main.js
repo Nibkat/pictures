@@ -12,9 +12,18 @@ const {
 const path = require('path');
 const url = require('url');
 
+const dockMenu = Menu.buildFromTemplate([
+  {
+    label: 'New Window',
+    click() { createWindow(); }
+  }
+]);
+
 let mainWindow;
 
 function createWindow() {
+  app.dock.setMenu(dockMenu);
+
   mainWindow = new BrowserWindow({
     width: 512,
     height: 512,
