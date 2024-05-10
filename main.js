@@ -88,7 +88,7 @@ const imageContextMenuTemplate = [{
   label: 'Reveal in ' + (os.platform() === 'darwin' ? 'Finder' : 'Explorer'),
   accelerator: 'CommandOrControl+Shift+O',
   click: () => {
-    mainWindow.send('open-folder');
+    mainWindow.send('reveal');
   }
 }, {
   type: 'separator'
@@ -118,7 +118,7 @@ const imageContextMenuTemplate = [{
 }, {
   role: 'quit',
   accelerator: 'CommandOrControl+Q'
-}]
+}];
 
 const menu = Menu.buildFromTemplate(imageContextMenuTemplate);
 
@@ -140,22 +140,18 @@ ipcMain.on('new-window', (e) => {
 /*
  * Edit context menu
  */
-const editMenu = new Menu();
-
-editMenu.append(new MenuItem({
+const simpleEditMenu = Menu.buildFromTemplate([{
   role: 'cut',
   accelerator: 'CommandOrControl+X'
-}));
-editMenu.append(new MenuItem({
+}, {
   role: 'copy',
   accelerator: 'CommandOrControl+C'
-}));
-editMenu.append(new MenuItem({
+}, {
   role: 'paste',
   accelerator: 'CommandOrControl+V'
-}));
+}]);
 
-ipcMain.on('show-edit-context-menu', (event) => {
-  const win = BrowserWindow.fromWebContents(event.sender);
-  editMenu.popup(win);
+ipcMain.on('show-edit-context-menu', (e) => {
+  const win = BrowserWindow.fromWebContents(e.sender);
+  simpleEditMenu.popup(win);
 });
