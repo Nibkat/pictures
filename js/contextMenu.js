@@ -1,7 +1,7 @@
-$(picture).contextmenu(function () {
+$(picture).contextmenu(() => {
     ipcRenderer.send('show-context-menu');
 });
 
-$('#urlTextbox').contextmenu(function () {
+$('#urlTextbox').contextmenu(() => {
     ipcRenderer.send('show-edit-context-menu');
 });
