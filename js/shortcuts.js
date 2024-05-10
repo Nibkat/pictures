@@ -1,4 +1,4 @@
-Mousetrap.bind('ctrl+o', function(e) {
+Mousetrap.bind('ctrl+o', function (e) {
     ipc.send('open-file-dialog');
 });
 
@@ -6,6 +6,6 @@ Mousetrap.bind('ctrl+o', function(e) {
     copyImage();
 });*/
 
-Mousetrap.bind('ctrl+q', function(e) {
+Mousetrap.bind('ctrl+q', function (e) {
     remote.getCurrentWindow().close();
 });
