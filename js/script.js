@@ -26,7 +26,6 @@ ipcRenderer.on('save-image', () => {
 
 ipcRenderer.on('open-image', showOpenImageDialog);
 ipcRenderer.on('open-folder', openFolder);
-ipcRenderer.on('delete-image', deleteImage);
 
 urlTextbox.addEventListener('keypress', (e) => {
     if (e.keyCode == 13) {
@@ -63,35 +62,4 @@ function showOpenImageDialog() {
  */
 function openFolder() {
     shell.showItemInFolder(picture.src);
-}
-
-/*
- * Deleting an image
- */
-function deleteImage() {
-    const options = {
-        type: 'info',
-        title: 'Delete image',
-        message: "Are you sure you want to permanently delete this image?",
-        buttons: ['Yes', 'No']
-    }
-    dialog.showMessageBox(options, (index) => {
-        if (index === 0) {
-            let fileName = unescape(picture.src.replace('file:///', ''));
-
-            if (fs.existsSync(fileName)) {
-                fs.unlink(fileName, (err) => {
-                    if (err) {
-                        alert("An error ocurred updating the file" + err.message);
-                        console.log(err);
-                        return;
-                    }
-
-                    picture.src = 'images/deleted.png';
-                });
-            } else {
-                alert("This file doesn't exist or isn't local, cannot delete");
-            }
-        }
-    });
 }

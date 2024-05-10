@@ -1,0 +1,74 @@
+#titlebar {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(35, 35, 35, 0.4);
+    color: #fff;
+    font-size: 2em;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    -webkit-app-region: drag;
+}
+
+/* Titlebar buttons win */
+.window-control-bttn-win {
+    width: 16px;
+    height: 100%;
+    display: inline-block;
+    -webkit-app-region: no-drag;
+}
+
+.window-control-bttn-win > img {
+    -webkit-app-region: no-drag;
+}
+
+/* Titlebar buttons mac */
+.window-control-bttn-mac {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    -webkit-app-region: no-drag;
+    transition: opacity 0.25s ease;
+
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.window-control-bttn-mac > svg {
+    position: fixed;
+    display: none;
+}
+
+#windowControlMac:hover > .window-control-bttn-mac > svg {
+    display: block;
+}
+
+.window-control-bttn-mac:active {
+    opacity: 0.8;
+}
+
+/* Icon buttons */
+.icon-button {
+    cursor: default;
+    transition: color 0.25s ease;
+    -webkit-app-region: no-drag;
+}
+
+/*#lockButton:hover:active {
+    color: #f8bd34;
+}*/
+
+/*#openImageButton:hover:active {
+    color: #F9D774;
+    color: #88CFF7;
+}*/
+
+#openUrlButton:hover:active {
+    color: #a7a7a7;
+}
+
+#deleteButton:hover:active {
+    color: #ea5b53;
+}
