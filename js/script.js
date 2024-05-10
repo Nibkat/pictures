@@ -1,16 +1,23 @@
 /*
-* Variables
-*/
+ * Variables
+ */
 const picture = document.getElementById('picture');
 
 const urlTextbox = document.getElementById('urlTextbox');
 urlTextbox.style.display = 'none';
 
+// Image load event
 picture.addEventListener('load', () => {
-    setWindowSize();
-    centerWindow();
+    let imageLoadEvent = new CustomEvent('imageChange', {
+        'detail': {
+            'isLocal': fs.existsSync(unescape(picture.src.replace('file:///', '')))
+        }
+    });
+    
+    document.dispatchEvent(imageLoadEvent);
 });
 
+// Double clicking
 picture.addEventListener('dblclick', showOpenImageDialog);
 
 ipcRenderer.on('save-image', () => {
@@ -25,13 +32,9 @@ urlTextbox.addEventListener('keypress', (e) => {
     if (e.keyCode == 13) {
         testImage(urlTextbox.value, (url, result) => {
             if (result == 'success') {
-                //picture.attr('src', url);
                 picture.src = url;
-                //urlTextbox.fadeOut('fast');
                 fadeOut(urlTextbox, 250);
                 urlTextbox.value = '';
-
-                //deleteButton.hide();
             } else {
                 dialog.showErrorBox('Invalid image', 'Timed out or the url is not a valid image');
             }
@@ -40,8 +43,8 @@ urlTextbox.addEventListener('keypress', (e) => {
 });
 
 /*
-* Showing the image dialog
-*/
+ * Showing the image dialog
+ */
 function showOpenImageDialog() {
     dialog.showOpenDialog({
         filters: [{
@@ -56,15 +59,15 @@ function showOpenImageDialog() {
 }
 
 /*
-* Open the folder containing the current image
-*/
+ * Open the folder containing the current image
+ */
 function openFolder() {
     shell.showItemInFolder(picture.src);
 }
 
 /*
-* Deleting an image
-*/
+ * Deleting an image
+ */
 function deleteImage() {
     const options = {
         type: 'info',
