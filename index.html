@@ -24,7 +24,7 @@
       <i id="lockButton" class="icon-button material-icons">lock</i>
       <i id="openImageButton" class="icon-button material-icons">folder</i>
       <i id="openUrlButton" class="icon-button material-icons">attach_file</i>
-      <i id="editButton" class="icon-button material-icons">edit</i>
+      <!--<i id="editButton" class="icon-button material-icons">edit</i>-->
       <i id="deleteButton" class="icon-button material-icons">delete</i>
     </div>
 
@@ -71,20 +71,23 @@
   </script>
 
   <script src="./js/script.js"></script>
-  <script src="./js/fade.js"></script>
-  <script src="./js/dropzone.js"></script>
+
+  <script src="./js/utility/fade.js"></script>
+  <script src="./js/utility/imageTester.js"></script>
+
+  <script src="./js/file-handling/deletion.js"></script>
+  <script src="./js/file-handling/dropzone.js"></script>
+  <script src="./js/file-handling/clipboard.js"></script>
+
+  <script src="./js/window/window.js"></script>
+  <script src="./js/window/windowControl.js"></script>
+
   <script src="./js/titlebar.js"></script>
-  <script src="./js/window.js"></script>
+
   <script src="./js/shortcuts.js"></script>
-  <script src="./js/utility.js"></script>
-  <script src="./js/deletion.js"></script>
-  <script src="./js/windowControl.js"></script>
+  
   <script src="./js/context-menus/imageContextMenu.js"></script>
   <script src="./js/context-menus/editContextMenu.js"></script>
-
-  <script>
-    if (window.module) module = window.module;
-  </script>
 </body>
 
 </html>

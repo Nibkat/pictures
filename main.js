@@ -1,4 +1,5 @@
 const electron = require('electron');
+const fs = require('fs');
 
 const {
   app,
@@ -16,6 +17,17 @@ const dockMenu = Menu.buildFromTemplate([{
     createWindow();
   }
 }]);
+
+app.setUserTasks([
+  {
+    program: process.execPath,
+    arguments: '--new-window',
+    iconPath: process.execPath,
+    iconIndex: 0,
+    title: 'New Window',
+    description: 'Opens a new window'
+  }
+]);
 
 let windows = [];
 
@@ -71,6 +83,22 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+app.on('before-quit', () => {
+  let tempDir = __dirname + '/temp';
+
+  if (fs.existsSync(tempDir)) {
+    fs.readdirSync(tempDir).forEach(function (file, index) {
+      let curPath = tempDir + "/" + file;
+      if (fs.lstatSync(curPath).isDirectory()) { // recurse
+        deleteFolderRecursive(curPath);
+      } else { // delete file
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(tempDir);
+  }
+})
 
 /*
  * IPC events

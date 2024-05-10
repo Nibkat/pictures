@@ -24,7 +24,7 @@ picture.addEventListener('dblclick', showOpenImageDialog);
 urlTextbox.addEventListener('keypress', (e) => {
     if (e.keyCode == 13) {
         testImage(urlTextbox.value, (url, result) => {
-            if (result == 'success') {
+            if (result === 'success') {
                 setPicture(url);
                 
                 fadeOut(urlTextbox, 250);
@@ -38,7 +38,7 @@ urlTextbox.addEventListener('keypress', (e) => {
 
 /*
  * Showing the image dialog
- */
+*/
 function showOpenImageDialog() {
     dialog.showOpenDialog({
         filters: [{
@@ -54,7 +54,7 @@ function showOpenImageDialog() {
 
 /*
  * Open the folder containing the current image
- */
+*/
 function openFolder() {
     shell.showItemInFolder(picturePath);
 }
