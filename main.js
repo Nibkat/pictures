@@ -1,15 +1,12 @@
 const electron = require('electron');
 const ipc = require('electron').ipcMain;
 const dialog = require('electron').dialog;
-
-const app = electron.app;
-
-const BrowserWindow = electron.BrowserWindow;
-
-const globalShortcut = electron.globalShortcut;
-
 const path = require('path');
 const url = require('url');
+
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+const globalShortcut = electron.globalShortcut;
 
 let mainWindow;
 
@@ -29,7 +26,7 @@ function createWindow() {
   }));
 
   mainWindow.on('closed', function () {
-    mainWindow = null
+    mainWindow = null;
   });
 }
 
@@ -47,8 +44,8 @@ function openImageDialog() {
   dialog.showOpenDialog({
     filters: [
       {
-        name: 'image',
-        extensions: ['jpg', 'png', 'gif', 'svg', 'bmp']
+        name: 'Image',
+        extensions: ['jpg', 'png', 'gif', 'svg', 'bmp', 'webp', 'tiff', 'ico']
       }
     ]
   }, function (files) {
